@@ -226,11 +226,15 @@ function importImages(menu: Menu, report: string[]): void {
     }
 
     // Copy file to public/menu-images/<cat>/
+    // Normalize filename to NFC — macOS HFS+/APFS tends to give NFD, but
+    // Vercel/Linux serves filenames in NFC. Without normalizing, files
+    // copied from macOS-typed names 404 in production.
     const destDir = join(PUBLIC_IMG_DIR, targetCat.id);
     mkdirSync(destDir, { recursive: true });
-    const destPath = join(destDir, img.fileName);
+    const destFileName = img.fileName.normalize("NFC");
+    const destPath = join(destDir, destFileName);
     copyFileSync(img.fullPath, destPath);
-    const publicUrl = `/menu-images/${encodeURIComponent(targetCat.id)}/${encodeURIComponent(img.fileName)}`;
+    const publicUrl = `/menu-images/${encodeURIComponent(targetCat.id)}/${encodeURIComponent(destFileName)}`;
 
     if (match) {
       match.item.image = publicUrl;
