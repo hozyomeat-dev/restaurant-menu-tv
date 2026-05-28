@@ -28,6 +28,9 @@ export type Story = {
   accent?: string;
   badge?: string;
   image?: string;
+  /** Insert this story right before the slide with this category id or item id.
+   *  If unset, falls back to display.storyEveryNSlides round-robin. */
+  insertBefore?: string;
 };
 
 export type MenuData = {
@@ -71,19 +74,51 @@ export function buildSlides(menu: MenuData): Slide[] {
     }
   }
 
-  // Phase 2: interleave stories every N menu slides (round-robin)
   const stories = menu.stories ?? [];
-  const n = menu.display.storyEveryNSlides ?? 0;
-  if (stories.length === 0 || n <= 0) return base;
+  if (stories.length === 0) return base;
 
-  const result: Slide[] = [];
+  // Phase 2a: place stories with `insertBefore` at the matching slide.
+  // Walk back-to-front so earlier insertions don't shift later target indices.
+  const anchored = stories.filter((s) => s.insertBefore);
+  const free = stories.filter((s) => !s.insertBefore);
+  const result: Slide[] = [...base];
+
+  const anchorPositions = anchored
+    .map((story) => {
+      const target = story.insertBefore!;
+      let idx = -1;
+      for (let i = 0; i < result.length; i++) {
+        const s = result[i];
+        if (s.kind === "intro" && s.category.id === target) {
+          idx = i;
+          break;
+        }
+        if (s.kind === "item" && (s.item.id === target || s.category.id === target)) {
+          idx = i;
+          break;
+        }
+      }
+      return { story, idx };
+    })
+    .filter((x) => x.idx >= 0)
+    .sort((a, b) => b.idx - a.idx);
+
+  for (const { story, idx } of anchorPositions) {
+    result.splice(idx, 0, { kind: "story", story });
+  }
+
+  // Phase 2b: interleave any remaining (un-anchored) stories every N menu slides.
+  const n = menu.display.storyEveryNSlides ?? 0;
+  if (free.length === 0 || n <= 0) return result;
+
+  const interleaved: Slide[] = [];
   let storyIdx = 0;
-  for (let i = 0; i < base.length; i++) {
-    result.push(base[i]);
+  for (let i = 0; i < result.length; i++) {
+    interleaved.push(result[i]);
     if ((i + 1) % n === 0) {
-      result.push({ kind: "story", story: stories[storyIdx % stories.length] });
+      interleaved.push({ kind: "story", story: free[storyIdx % free.length] });
       storyIdx++;
     }
   }
-  return result;
+  return interleaved;
 }
