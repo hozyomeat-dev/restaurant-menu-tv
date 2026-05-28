@@ -71,7 +71,7 @@
             "看板",
             "人気"
           ],
-          "image": "/menu-images/meat-platter/5%E7%A8%AE%E7%9B%9B%E3%82%8A.jpg"
+          "hidden": true
         },
         {
           "id": "platter-8",
@@ -306,7 +306,7 @@
           "name": "エビとホタテのチーズトマト",
           "description": "海の旨みとコクがとけあう、やみつきの一皿",
           "price": 1180,
-          "image": "/menu-images/ippin/%E3%82%A8%E3%83%93%E3%81%A8%E3%83%9B%E3%82%BF%E3%83%86%E3%81%AE%E3%83%81%E3%83%BC%E3%82%BA%E3%83%88%E3%83%9E%E3%83%88.jpg"
+          "hidden": true
         },
         {
           "id": "ip-butaershoyu",
