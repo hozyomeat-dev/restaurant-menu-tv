@@ -134,18 +134,20 @@ function StorySlide({ slide: { story } }: { slide: Extract<Slide, { kind: "story
       />
 
       {/* Content */}
-      <div className="relative z-10 flex h-full w-full flex-col justify-between p-[4vw]">
+      <div className="relative z-10 flex h-full w-full flex-col p-[4vw]">
         {/* Top bar */}
         <div className="flex items-center gap-[1.5vw]">
+          {story.subtitle && (
+            <span
+              className="font-display text-[1.7vw] font-bold uppercase tracking-[0.45em]"
+              style={{ color: accent }}
+            >
+              {story.subtitle}
+            </span>
+          )}
           <span
-            className="font-display text-[1.6vw] font-bold uppercase tracking-[0.5em]"
-            style={{ color: accent }}
-          >
-            Producer Story
-          </span>
-          <span
-            className="h-[3px] w-[10vw]"
-            style={{ background: accent, opacity: 0.7 }}
+            className="h-[3px] flex-1 max-w-[14vw]"
+            style={{ background: accent, opacity: 0.6 }}
           />
           {story.badge && (
             <span
@@ -161,18 +163,13 @@ function StorySlide({ slide: { story } }: { slide: Extract<Slide, { kind: "story
           )}
         </div>
 
-        {/* Middle: Title + Subtitle + Lead */}
-        <div className="-mt-[4vh]">
-          {story.subtitle && (
-            <p
-              className="font-display text-[1.7vw] font-bold uppercase tracking-[0.45em]"
-              style={{ color: accent, opacity: 0.95 }}
-            >
-              {story.subtitle}
-            </p>
-          )}
+        {/* Vertical spacer to push title down from top bar */}
+        <div className="h-[6vh]" />
+
+        {/* Middle: Title + Lead */}
+        <div className="flex-1">
           <h2
-            className="mt-[0.5vh] font-display text-[14vw] font-black leading-[0.9] text-ink"
+            className="font-display text-[14vw] font-black leading-[0.9] text-ink"
             style={{
               textShadow: `0 6px 40px rgba(0,0,0,0.9), 0 0 80px ${accent}55`,
               letterSpacing: "-0.02em",
@@ -183,7 +180,7 @@ function StorySlide({ slide: { story } }: { slide: Extract<Slide, { kind: "story
 
           {story.lead && (
             <p
-              className="mt-[4vh] max-w-[68vw] whitespace-pre-line font-display text-[4.2vw] font-bold leading-[1.25] text-ink"
+              className="mt-[3.5vh] max-w-[68vw] whitespace-pre-line font-display text-[4.2vw] font-bold leading-[1.25] text-ink"
               style={{
                 textShadow: "0 4px 24px rgba(0,0,0,0.95)",
               }}
