@@ -5,11 +5,11 @@
     "currency": "¥"
   },
   "display": {
-    "slideDurationMs": 14000,
-    "showCategoryIntro": true,
-    "categoryIntroDurationMs": 6000,
-    "storyDurationMs": 22000,
-    "storyEveryNSlides": 0
+    "slideDurationMs": 9000,
+    "showCategoryIntro": false,
+    "categoryIntroDurationMs": 4000,
+    "storyDurationMs": 14000,
+    "storyEveryNSlides": 6
   },
   "stories": [
     {
@@ -20,20 +20,17 @@
       "body": "吉野川の伏流水と高栄養飼料で、26ヶ月以上の長期肥育。\n2016年、徳島県知事認定「とくしま三つ星ビーフ」。",
       "accent": "#c0392b",
       "badge": "とくしま三つ星ビーフ",
-      "image": "https://images.unsplash.com/photo-1777898967209-2d124602a601?w=1920&q=80&auto=format&fit=crop",
-      "showAtStart": true
+      "image": "https://images.unsplash.com/photo-1777898967209-2d124602a601?w=1920&q=80&auto=format&fit=crop"
     },
     {
       "id": "story-awa-odori",
       "title": "阿波尾鶏",
       "subtitle": "AWA-ODORI",
-      "lead": "JAS規格地鶏、\n生産量 全国1位。",
-      "body": "徳島の軍鶏（シャモ）× ホワイトプリマスロック の交配種。\n全期間平飼い、75日以上育てる、徳島が誇るブランド地鶏。",
+      "lead": "弾ける皮、噛みしめる赤い肉。\n地鶏の旨味、ここに極まる。",
+      "body": "外はパリッと香ばしく、内側はしっとりジューシー。\n噛むほどに広がる、力強い旨味とコクのある肉汁。地鶏ならではの歯ごたえと、深い味わいです。",
       "accent": "#d68a3a",
-      "badge": "JAS地鶏 全国1位",
-      "image": "https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=1920&q=80&auto=format&fit=crop",
-      "showAtStart": true,
-      "insertBefore": "prem-tebasaki"
+      "badge": "徳島ブランド地鶏",
+      "image": "https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=1920&q=80&auto=format&fit=crop"
     },
     {
       "id": "story-kimoto-noen",
@@ -43,9 +40,7 @@
       "body": "瀬戸内の温暖な気候と、海のミネラルを含んだ砂地の畑。\n栗のようなホクホクの食感と、上品な甘さを、お食事の最後に。",
       "accent": "#d4a574",
       "badge": "なると金時",
-      "image": "https://images.unsplash.com/photo-1730815048561-45df6f7f331d?w=1920&q=80&auto=format&fit=crop",
-      "showAtStart": true,
-      "insertBefore": "shime-kintoki"
+      "image": "https://images.unsplash.com/photo-1730815048561-45df6f7f331d?w=1920&q=80&auto=format&fit=crop"
     }
   ],
   "categories": [
@@ -124,11 +119,12 @@
           "name": "極上赤身牛カツ (60g)",
           "description": "旨味の濃い赤身をさっと揚げ、外はサクッ、中はしっとりレアに",
           "price": 1080,
-          "image": "/menu-images/meat-premium/%E7%89%9B%E3%81%8B%E3%81%A4.jpg"
+          "image": "/menu-images/meat-premium/%E7%89%9B%E3%81%8B%E3%81%A4.jpg",
+          "hidden": true
         },
         {
           "id": "prem-katsu-l",
-          "name": "極上赤身牛カツ (120g)",
+          "name": "極上赤身牛カツ",
           "description": "旨味の濃い赤身をさっと揚げ、外はサクッ、中はしっとりレアに",
           "price": 1980,
           "badges": [
@@ -461,37 +457,43 @@
           "id": "bw-rothschild-r",
           "name": "ドメーヌ・バロン・ロートシルト ルージュ",
           "description": "赤｜相性○：ローストビーフ／チーズトマト／ウニクリームパスタ",
-          "price": 4800
+          "price": 4800,
+          "notes": "ボルドー名門ラフィット・ロートシルト家のサガR。メルロー × カベルネの王道ブレンドで、花とスパイス、穏やかな樽香。滑らかなタンニンとエレガントな余韻。"
         },
         {
           "id": "bw-mompera",
           "name": "シャトー・モンペラ ルージュ",
           "description": "赤｜相性○：アヒージョ／ガーリックライス",
-          "price": 5400
+          "price": 5400,
+          "notes": "漫画『神の雫』で一躍有名になった、ボルドー右岸デスパーニュ家の名作。メルロー主体（約80%）、深い黒紫色、ブラックチェリーの濃厚な果実味とシルキーなタンニン。"
         },
         {
           "id": "bw-brett-merlot",
           "name": "ブレット&バター メルロー",
           "description": "赤｜相性○：牛カツ／カルボナーラ／ミートソースパスタ",
-          "price": 7400
+          "price": 7400,
+          "notes": "2014年「全米最速成長ワイン」に唯一選出された、カリフォルニアの新進ワイナリー。柔らかい口当たりに、プラム・ダークチェリー・バニラ・ミルクチョコ。後味のクリーミーさが秀逸。"
         },
         {
           "id": "bw-calera",
           "name": "カレラ ピノ・ノワール",
           "description": "赤｜相性○：アロゼ牛ステーキ／赤身タタキ／ビーフシチュー",
-          "price": 9800
+          "price": 9800,
+          "notes": "「カリフォルニアの神様」ジョシュ・ジェンセン創業、伝説的ワイナリー。マウント・ハーラン石灰岩土壌のピノは、繊細さと力強さを併せ持つ。ラズベリー、ダークチェリー、セージの複雑な香り。"
         },
         {
           "id": "bw-rothschild-w",
           "name": "ドメーヌ・バロン・ロートシルト ブラン",
           "description": "白｜相性○：チーズポテトバケット／ウニクリームパスタ／サラダ",
-          "price": 4800
+          "price": 4800,
+          "notes": "ロートシルト家のボルドー・ブラン。ソーヴィニヨン・ブラン主体で、柑橘とハーブの爽やかな香り。シャープな酸とミネラル感、ドライな辛口。"
         },
         {
           "id": "bw-jadot-chablis",
           "name": "ルイ・ジャド シャブリ",
           "description": "白｜相性○：ローストビーフ／チーズトマト",
-          "price": 7400
+          "price": 7400,
+          "notes": "ブルゴーニュ屈指のネゴシアン、ルイ・ジャド。シャブリ特有のキンメリジャン土壌で育つシャルドネ100%。レモン・青リンゴ、牡蠣の貝殻のようなミネラル感。"
         }
       ]
     }

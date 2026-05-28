@@ -361,8 +361,8 @@ function WineSlide({
 
   return (
     <div className="grid h-full w-full animate-fadeIn grid-cols-12 gap-[3vw]">
-      {/* Left: wine identity */}
-      <div className="col-span-6 flex flex-col justify-between py-[2vh]">
+      {/* Left: wine identity + notes */}
+      <div className="col-span-7 flex flex-col justify-between py-[2vh]">
         <div>
           <div className="mb-[2.5vh] flex items-center gap-[1.5vw]">
             <span
@@ -385,9 +385,15 @@ function WineSlide({
             )}
           </div>
 
-          <h2 className="font-display text-[5vw] font-bold leading-[1.05] text-ink">
+          <h2 className="font-display text-[4.4vw] font-bold leading-[1.1] text-ink">
             {item.name}
           </h2>
+
+          {item.notes && (
+            <p className="mt-[3vh] max-w-[44vw] text-[1.7vw] font-medium leading-[1.7] text-ink/90">
+              {item.notes}
+            </p>
+          )}
 
           {item.badges && item.badges.length > 0 && (
             <div className="mt-[2vh] flex flex-wrap gap-[0.8vw]">
@@ -405,7 +411,7 @@ function WineSlide({
 
         <div className="flex items-baseline gap-[1vw]">
           <span className="font-display text-[2vw] text-muted">{currency}</span>
-          <span className="font-display text-[6vw] font-bold leading-none text-accent">
+          <span className="font-display text-[5.6vw] font-bold leading-none text-accent">
             {item.price.toLocaleString("ja-JP")}
           </span>
           <span className="text-[1.2vw] text-muted">税込 / ボトル</span>
@@ -413,12 +419,12 @@ function WineSlide({
       </div>
 
       {/* Right: pairing showcase */}
-      <div className="relative col-span-6 flex flex-col justify-center overflow-hidden rounded-[1.5vw] p-[3vw]"
+      <div className="relative col-span-5 flex flex-col justify-center overflow-hidden rounded-[1.5vw] p-[2.5vw]"
         style={{
           background: `radial-gradient(ellipse at 20% 30%, ${(category.accent ?? "#7a2d3a")}55, transparent 65%), radial-gradient(ellipse at 80% 80%, ${(category.accent ?? "#7a2d3a")}30, transparent 65%), #110f0c`,
         }}
       >
-        <div className="mb-[3vh] flex items-center gap-[1.2vw]">
+        <div className="mb-[2.5vh] flex items-center gap-[1.2vw]">
           <span
             className="text-[2.4vw]"
             style={{ color: category.accent ?? "#e8b14a" }}
@@ -426,39 +432,37 @@ function WineSlide({
             ♥
           </span>
           <span
-            className="font-display text-[2.6vw] font-bold uppercase tracking-[0.3em]"
+            className="font-display text-[2.4vw] font-bold uppercase tracking-[0.3em]"
             style={{ color: category.accent ?? "#e8b14a" }}
           >
             Pairing
           </span>
         </div>
-        <p
-          className="mb-[2.5vh] font-display text-[2vw] font-medium text-ink/80"
-        >
+        <p className="mb-[2vh] font-display text-[1.6vw] font-medium text-ink/80">
           こちらと一緒に。
         </p>
 
         {pairings.length > 0 ? (
-          <ul className="space-y-[1.5vh]">
+          <ul className="space-y-[1.4vh]">
             {pairings.map((p, i) => (
               <li
                 key={i}
-                className="flex items-baseline gap-[1.5vw]"
+                className="flex items-baseline gap-[1.2vw]"
               >
                 <span
-                  className="font-display text-[2vw] font-bold leading-none"
+                  className="font-display text-[1.6vw] font-bold leading-none"
                   style={{ color: category.accent ?? "#e8b14a" }}
                 >
                   0{i + 1}
                 </span>
-                <span className="font-display text-[3.4vw] font-bold leading-[1.1] text-ink">
+                <span className="font-display text-[2.8vw] font-bold leading-[1.15] text-ink">
                   {p}
                 </span>
               </li>
             ))}
           </ul>
         ) : (
-          <p className="text-[1.8vw] text-ink/70">スタッフへお気軽にお声掛けください。</p>
+          <p className="text-[1.6vw] text-ink/70">スタッフへお気軽にお声掛けください。</p>
         )}
       </div>
     </div>

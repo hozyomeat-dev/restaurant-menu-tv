@@ -5,6 +5,8 @@ export type MenuItem = {
   name: string;
   nameEn?: string;
   description?: string;
+  /** Extended product notes (e.g., for bottle wines: producer, region, taste). */
+  notes?: string;
   price: number;
   image?: string;
   badges?: string[];
@@ -65,15 +67,29 @@ export type Slide =
 
 export function buildSlides(menu: MenuData): Slide[] {
   // Phase 1: build menu slides (intros + items)
+  // - When showCategoryIntro is false, interleave items round-robin across
+  //   categories (one from each cat per round) so the slideshow mixes dish
+  //   types rather than walking through each category in a block.
+  const groups = menu.categories
+    .map((cat) => ({ cat, items: cat.items.filter((i) => !i.hidden) }))
+    .filter((g) => g.items.length > 0);
+
   const base: Slide[] = [];
-  for (const cat of menu.categories) {
-    const visible = cat.items.filter((i) => !i.hidden);
-    if (visible.length === 0) continue;
-    if (menu.display.showCategoryIntro) {
+
+  if (menu.display.showCategoryIntro) {
+    // Grouped layout: intro + items per category, in order.
+    for (const { cat, items } of groups) {
       base.push({ kind: "intro", category: cat });
+      for (const item of items) base.push({ kind: "item", category: cat, item });
     }
-    for (const item of visible) {
-      base.push({ kind: "item", category: cat, item });
+  } else {
+    // Round-robin: take one item from each non-empty category per round.
+    const queues = groups.map((g) => ({ cat: g.cat, items: [...g.items] }));
+    while (queues.some((q) => q.items.length > 0)) {
+      for (const q of queues) {
+        const item = q.items.shift();
+        if (item) base.push({ kind: "item", category: q.cat, item });
+      }
     }
   }
 
