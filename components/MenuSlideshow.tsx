@@ -16,7 +16,9 @@ export default function MenuSlideshow({ menu }: Props) {
   const duration =
     current?.kind === "intro"
       ? menu.display.categoryIntroDurationMs
-      : menu.display.slideDurationMs;
+      : current?.kind === "story"
+        ? menu.display.storyDurationMs ?? 10000
+        : menu.display.slideDurationMs;
 
   useEffect(() => {
     if (slides.length === 0) return;
@@ -79,7 +81,127 @@ function SlideView({ slide, currency }: { slide: Slide; currency: string }) {
   if (slide.kind === "intro") {
     return <CategoryIntro slide={slide} />;
   }
+  if (slide.kind === "story") {
+    return <StorySlide slide={slide} />;
+  }
   return <ItemSlide slide={slide} currency={currency} />;
+}
+
+function StorySlide({ slide: { story } }: { slide: Extract<Slide, { kind: "story" }> }) {
+  const accent = story.accent ?? "#e8b14a";
+  const hasImage = Boolean(story.image);
+
+  return (
+    <div
+      key={story.id}
+      className="relative grid h-full w-full animate-fadeIn grid-cols-12 gap-[3vw]"
+    >
+      {/* Left: text */}
+      <div className="col-span-7 flex flex-col justify-between py-[2vh]">
+        <div>
+          <div className="mb-[2.5vh] flex items-center gap-[1.5vw]">
+            <span
+              className="font-display text-[1.4vw] uppercase tracking-[0.4em]"
+              style={{ color: accent }}
+            >
+              Story
+            </span>
+            <span
+              className="h-[2px] flex-1 max-w-[6vw]"
+              style={{ background: accent, opacity: 0.6 }}
+            />
+            {story.badge && (
+              <span
+                className="rounded-full border px-[1.2vw] py-[0.4vh] text-[1vw] font-medium"
+                style={{ borderColor: accent, color: accent }}
+              >
+                {story.badge}
+              </span>
+            )}
+          </div>
+
+          <h2
+            className="font-display text-[7vw] font-bold leading-[1.0]"
+            style={{ color: accent }}
+          >
+            {story.title}
+          </h2>
+          {story.subtitle && (
+            <p className="mt-[1.2vh] font-display text-[1.5vw] tracking-wider text-muted">
+              {story.subtitle}
+            </p>
+          )}
+
+          {story.lead && (
+            <p
+              className="mt-[3vh] font-display text-[2.4vw] font-medium leading-[1.4] text-ink"
+              style={{ textShadow: `0 0 30px ${accent}33` }}
+            >
+              {story.lead}
+            </p>
+          )}
+
+          {story.body && (
+            <div className="mt-[3vh] max-w-[42vw] space-y-[1.2vh]">
+              {story.body.split(/\n\n+/).map((p, i) => (
+                <p
+                  key={i}
+                  className="text-[1.5vw] leading-[1.7] text-ink/85"
+                >
+                  {p}
+                </p>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <p className="text-[1vw] uppercase tracking-[0.3em] text-muted">— 産地から、テーブルまで —</p>
+      </div>
+
+      {/* Right: decorative panel / optional image */}
+      <div className="relative col-span-5 overflow-hidden rounded-[1.5vw]">
+        {hasImage ? (
+          <div className="relative h-full w-full animate-kenBurns">
+            <Image
+              src={story.image!}
+              alt={story.title}
+              fill
+              priority
+              sizes="50vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-bg/70 via-transparent to-transparent" />
+          </div>
+        ) : (
+          <div
+            className="relative flex h-full w-full items-center justify-center"
+            style={{
+              background: `radial-gradient(ellipse at 30% 30%, ${accent}40, transparent 70%), radial-gradient(ellipse at 70% 70%, ${accent}20, transparent 70%), #110f0c`,
+            }}
+          >
+            <div
+              className="absolute inset-[8%] rounded-[1vw] border opacity-30"
+              style={{ borderColor: accent }}
+            />
+            <div className="text-center">
+              <p
+                className="font-display text-[10vw] font-bold leading-none opacity-15"
+                style={{ color: accent }}
+              >
+                {story.title.slice(0, 1)}
+              </p>
+              <p
+                className="mt-[2vh] text-[1vw] uppercase tracking-[0.5em]"
+                style={{ color: accent, opacity: 0.7 }}
+              >
+                {story.badge ?? "Producer Story"}
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
 
 function CategoryIntro({ slide: { category } }: { slide: Extract<Slide, { kind: "intro" }> }) {
@@ -204,16 +326,22 @@ function Footer({
 }) {
   const current = slides[index];
   const categoryId =
-    current.kind === "intro" ? current.category.id : current.category.id;
+    current.kind === "story" ? "_story" : current.category.id;
 
-  // Group slide indices by category for nav dots
+  // Group slide indices by category for nav dots (stories appear as their own group)
   const groups = useMemo(() => {
     const map = new Map<string, { name: string; accent?: string; count: number; firstIndex: number }>();
     slides.forEach((s, i) => {
-      const cat = s.kind === "intro" ? s.category : s.category;
-      const cur = map.get(cat.id);
-      if (cur) cur.count += 1;
-      else map.set(cat.id, { name: cat.name, accent: cat.accent, count: 1, firstIndex: i });
+      if (s.kind === "story") {
+        const cur = map.get("_story");
+        if (cur) cur.count += 1;
+        else map.set("_story", { name: "ストーリー", accent: s.story.accent, count: 1, firstIndex: i });
+      } else {
+        const cat = s.category;
+        const cur = map.get(cat.id);
+        if (cur) cur.count += 1;
+        else map.set(cat.id, { name: cat.name, accent: cat.accent, count: 1, firstIndex: i });
+      }
     });
     return Array.from(map.entries());
   }, [slides]);
