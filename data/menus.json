@@ -1,0 +1,315 @@
+{
+  "restaurant": {
+    "name": "和食処 まかろん",
+    "tagline": "本日もご来店ありがとうございます",
+    "currency": "¥"
+  },
+  "display": {
+    "slideDurationMs": 7000,
+    "showCategoryIntro": true,
+    "categoryIntroDurationMs": 3500
+  },
+  "categories": [
+    {
+      "id": "today",
+      "name": "本日のおすすめ",
+      "nameEn": "Today's Special",
+      "accent": "#e8b14a",
+      "items": [
+        {
+          "id": "today-001",
+          "name": "金目鯛の煮付け",
+          "nameEn": "Simmered Golden Eye Snapper",
+          "description": "脂ののった金目鯛を醤油と生姜でじっくり煮込みました",
+          "price": 2480,
+          "image": "https://images.unsplash.com/photo-1580959375944-abd7e991f971?w=1600&q=80",
+          "badges": ["数量限定", "本日入荷"]
+        },
+        {
+          "id": "today-002",
+          "name": "牡蠣の土手鍋",
+          "nameEn": "Oyster Hot Pot",
+          "description": "広島産の大粒牡蠣と季節野菜の味噌仕立て",
+          "price": 1980,
+          "image": "https://images.unsplash.com/photo-1606851094291-6efae152bb87?w=1600&q=80",
+          "badges": ["温かい"]
+        },
+        {
+          "id": "today-003",
+          "name": "黒毛和牛の炙り寿司",
+          "nameEn": "Seared Wagyu Sushi",
+          "description": "A5ランクの黒毛和牛を軽く炙り、塩と山葵で",
+          "price": 2200,
+          "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1600&q=80",
+          "badges": ["人気"]
+        }
+      ]
+    },
+    {
+      "id": "appetizers",
+      "name": "お通し・前菜",
+      "nameEn": "Appetizers",
+      "accent": "#7eb47e",
+      "items": [
+        {
+          "id": "app-001",
+          "name": "枝豆の塩茹で",
+          "price": 480,
+          "description": "丹波産の極上枝豆"
+        },
+        {
+          "id": "app-002",
+          "name": "出汁巻き玉子",
+          "price": 780,
+          "description": "鰹と昆布の一番出汁でふんわりと",
+          "image": "https://images.unsplash.com/photo-1607301406259-dfb186e15de8?w=1600&q=80"
+        },
+        {
+          "id": "app-003",
+          "name": "胡麻豆腐",
+          "price": 580,
+          "description": "自家製の濃厚胡麻豆腐"
+        },
+        {
+          "id": "app-004",
+          "name": "なすの揚げ浸し",
+          "price": 680,
+          "description": "とろりとした賀茂茄子に生姜醤油"
+        },
+        {
+          "id": "app-005",
+          "name": "もずく酢",
+          "price": 480,
+          "description": "沖縄産太もずくをさっぱりと"
+        },
+        {
+          "id": "app-006",
+          "name": "鴨ロース",
+          "price": 980,
+          "description": "国産合鴨を低温調理で",
+          "image": "https://images.unsplash.com/photo-1544025162-d76694265947?w=1600&q=80"
+        }
+      ]
+    },
+    {
+      "id": "sashimi",
+      "name": "お造り",
+      "nameEn": "Sashimi",
+      "accent": "#5a9cd6",
+      "items": [
+        {
+          "id": "sashi-001",
+          "name": "本日のお造り三種盛り",
+          "price": 1680,
+          "description": "市場直送の鮮魚を職人が厳選",
+          "image": "https://images.unsplash.com/photo-1583623025817-d180a2221d0a?w=1600&q=80",
+          "badges": ["人気"]
+        },
+        {
+          "id": "sashi-002",
+          "name": "本日のお造り五種盛り",
+          "price": 2680,
+          "description": "贅沢な五点盛り合わせ",
+          "image": "https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?w=1600&q=80"
+        },
+        {
+          "id": "sashi-003",
+          "name": "中トロ",
+          "price": 1980,
+          "description": "本鮪の中トロを贅沢に"
+        },
+        {
+          "id": "sashi-004",
+          "name": "炙りしめ鯖",
+          "price": 980,
+          "description": "肉厚しめ鯖を軽く炙って香ばしく"
+        },
+        {
+          "id": "sashi-005",
+          "name": "鯛の昆布締め",
+          "price": 1280,
+          "description": "天然真鯛を一晩昆布締めに"
+        }
+      ]
+    },
+    {
+      "id": "grill",
+      "name": "焼き物",
+      "nameEn": "Grilled",
+      "accent": "#d67a4a",
+      "items": [
+        {
+          "id": "grill-001",
+          "name": "銀だらの西京焼き",
+          "price": 1680,
+          "description": "白味噌に三日間漬け込んだ銀だら",
+          "image": "https://images.unsplash.com/photo-1535400875775-0fe8ba2c1f12?w=1600&q=80",
+          "badges": ["人気"]
+        },
+        {
+          "id": "grill-002",
+          "name": "鰤の塩焼き",
+          "price": 1480,
+          "description": "脂ののった寒鰤を塩でシンプルに"
+        },
+        {
+          "id": "grill-003",
+          "name": "厚切り牛タン塩焼き",
+          "price": 1880,
+          "description": "肉厚の牛タンを炭火で香ばしく",
+          "image": "https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=1600&q=80"
+        },
+        {
+          "id": "grill-004",
+          "name": "若鶏の柚子胡椒焼き",
+          "price": 980,
+          "description": "国産若鶏に自家製柚子胡椒"
+        },
+        {
+          "id": "grill-005",
+          "name": "車海老の塩焼き",
+          "price": 1480,
+          "description": "活け車海老を炭火で"
+        }
+      ]
+    },
+    {
+      "id": "tempura",
+      "name": "天ぷら",
+      "nameEn": "Tempura",
+      "accent": "#d4a574",
+      "items": [
+        {
+          "id": "tem-001",
+          "name": "天ぷら盛り合わせ",
+          "price": 1980,
+          "description": "海老二本と季節野菜五種",
+          "image": "https://images.unsplash.com/photo-1581781870027-04d11b1b88f4?w=1600&q=80",
+          "badges": ["人気"]
+        },
+        {
+          "id": "tem-002",
+          "name": "海老天ぷら",
+          "price": 1280,
+          "description": "大振りの活け海老を二本"
+        },
+        {
+          "id": "tem-003",
+          "name": "野菜天ぷら盛り合わせ",
+          "price": 980,
+          "description": "旬の野菜を七種"
+        },
+        {
+          "id": "tem-004",
+          "name": "穴子天ぷら",
+          "price": 1480,
+          "description": "ふっくらと揚げた一本穴子"
+        }
+      ]
+    },
+    {
+      "id": "rice",
+      "name": "御飯物",
+      "nameEn": "Rice",
+      "accent": "#b8a37e",
+      "items": [
+        {
+          "id": "rice-001",
+          "name": "土鍋ご飯（しらすと生姜）",
+          "price": 1280,
+          "description": "二〜三名様分。注文より三十分",
+          "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1600&q=80",
+          "badges": ["時間要"]
+        },
+        {
+          "id": "rice-002",
+          "name": "鯛茶漬け",
+          "price": 1480,
+          "description": "胡麻ダレに漬けた鯛を熱い出汁で",
+          "image": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=1600&q=80"
+        },
+        {
+          "id": "rice-003",
+          "name": "うな重",
+          "price": 3480,
+          "description": "国産鰻を丹念に焼き上げて",
+          "image": "https://images.unsplash.com/photo-1564834744159-ff0ea41ba4b9?w=1600&q=80",
+          "badges": ["特上"]
+        },
+        {
+          "id": "rice-004",
+          "name": "鮭といくらの親子丼",
+          "price": 1680,
+          "description": "脂ののった鮭と特製醤油漬けいくら"
+        }
+      ]
+    },
+    {
+      "id": "dessert",
+      "name": "甘味",
+      "nameEn": "Dessert",
+      "accent": "#d68aa8",
+      "items": [
+        {
+          "id": "des-001",
+          "name": "本日の和菓子",
+          "price": 580,
+          "description": "季節の上生菓子と抹茶"
+        },
+        {
+          "id": "des-002",
+          "name": "黒胡麻アイス最中",
+          "price": 480,
+          "description": "自家製アイスを最中で",
+          "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=1600&q=80"
+        },
+        {
+          "id": "des-003",
+          "name": "わらび餅",
+          "price": 680,
+          "description": "本わらび粉使用、黄な粉と黒蜜で"
+        }
+      ]
+    },
+    {
+      "id": "drinks",
+      "name": "お飲み物",
+      "nameEn": "Drinks",
+      "accent": "#9a7eb4",
+      "items": [
+        {
+          "id": "dri-001",
+          "name": "生ビール（中）",
+          "price": 680,
+          "description": "プレミアムモルツ"
+        },
+        {
+          "id": "dri-002",
+          "name": "日本酒 飲み比べ三種",
+          "price": 1480,
+          "description": "本日のおすすめを少しずつ",
+          "image": "https://images.unsplash.com/photo-1592812812413-6a8e9d5fc8b1?w=1600&q=80",
+          "badges": ["おすすめ"]
+        },
+        {
+          "id": "dri-003",
+          "name": "焼酎（芋・麦）",
+          "price": 580,
+          "description": "ロック / 水割り / お湯割り"
+        },
+        {
+          "id": "dri-004",
+          "name": "梅酒ソーダ",
+          "price": 680,
+          "description": "自家製梅酒"
+        },
+        {
+          "id": "dri-005",
+          "name": "煎茶",
+          "price": 380,
+          "description": "静岡産深蒸し茶"
+        }
+      ]
+    }
+  ]
+}
