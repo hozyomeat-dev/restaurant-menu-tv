@@ -4,6 +4,7 @@ Google TV のブラウザで常時表示する飲食店メニューボード。
 
 - **自動スライドショー**：放置で全メニューを順に表示
 - **JSON 一発編集**：`data/menus.json` を編集 → Pull Request → Vercel が自動で Preview URL を発行 → 店頭TVで確認 → main マージで本番反映
+- **画像・PDFの自動取り込み**：`incoming/` フォルダに放り込んで `npm run import` するだけ
 - **画像／カテゴリ／バッジ／価格** に対応
 - **TV最適化**：1080p / 4K向けにvw単位レイアウト、画面焼け対策（サブピクセルドリフト）、カーソル非表示
 
@@ -34,6 +35,35 @@ npm run dev
 2. 本番URLを開く
 3. 全画面表示 → スクリーンセーバーをOFF / 画面の自動オフをOFF
 4. （任意）TV Bro なら「キオスクモード」「起動時にURLを開く」設定が可能
+
+---
+
+## 📥 画像・PDFを放り込んで自動取り込み
+
+`data/menus.json` を直接書くのが面倒な時は、素材を `incoming/` に入れて自動取り込みできます。詳細は [incoming/README.md](incoming/README.md) を参照。
+
+```
+incoming/
+├── images/
+│   ├── today/                  # ← カテゴリIDのフォルダ
+│   │   └── 金目鯛の煮付け.jpg  # ← 同名アイテムに画像を紐付け
+│   ├── sashimi/
+│   │   └── 新メニュー__1980.jpg # ← __価格 で新規ドラフト追加
+│   └── _uncategorized/
+└── pdfs/
+    └── lunch.pdf               # ← テキスト抽出してドラフト追加
+```
+
+```bash
+npm run import
+```
+
+- 既存と同名のメニュー → 画像が紐付くだけ
+- 新規（既存になし）→ `hidden: true` のドラフトとして追加（レビュー後に公開）
+- PDFは `pdf-parse` でテキスト抽出 → 「名前＋価格」を検出 → 新カテゴリ `pdf-<filename>` にドラフト追加
+- 結果は `incoming/IMPORT_REPORT.md` に出力
+- 冪等：何度実行しても重複しない
+- スキャンPDF（テキストレイヤー無し）は抽出不可。OCR（macOSプレビュー / `ocrmypdf` 等）でテキスト化してから再投入
 
 ---
 
@@ -134,6 +164,7 @@ main                          ← 本番
 | `npm run build`      | 本番ビルド                           |
 | `npm run start`      | ビルド成果物を起動                   |
 | `npm run validate`   | menus.json のスキーマ検証            |
+| `npm run import`     | incoming/ の画像・PDFを取り込み      |
 
 ---
 
