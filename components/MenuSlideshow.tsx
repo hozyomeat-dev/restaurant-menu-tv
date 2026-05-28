@@ -244,6 +244,10 @@ function ItemSlide({
   slide: Extract<Slide, { kind: "item" }>;
   currency: string;
 }) {
+  // Bottle wine items get a dedicated layout featuring pairing chips.
+  if (category.id === "drink-bottle") {
+    return <WineSlide category={category} item={item} currency={currency} />;
+  }
   const hasImage = Boolean(item.image);
 
   return (
@@ -316,6 +320,150 @@ function ItemSlide({
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-bg/60 via-transparent to-transparent" />
         </div>
       )}
+    </div>
+  );
+}
+
+/** Parse "赤｜相性○：A／B／C" or "白｜相性○：A／B" into structured pairing data. */
+function parseWineDescription(desc: string | undefined): {
+  color: "赤" | "白" | "ロゼ" | null;
+  prelude: string;
+  pairings: string[];
+} {
+  if (!desc) return { color: null, prelude: "", pairings: [] };
+  const colorMatch = desc.match(/^(赤|白|ロゼ)/);
+  const color = (colorMatch?.[1] as "赤" | "白" | "ロゼ") ?? null;
+  const pairMatch = desc.match(/相性[○◯]?[：:](.+?)$/);
+  if (!pairMatch) {
+    return { color, prelude: desc.replace(/^(赤|白|ロゼ)[\s|｜]*/, ""), pairings: [] };
+  }
+  const pairings = pairMatch[1]
+    .split(/[／/、,]/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+  return { color, prelude: "", pairings };
+}
+
+function WineSlide({
+  category,
+  item,
+  currency,
+}: {
+  category: Extract<Slide, { kind: "item" }>["category"];
+  item: Extract<Slide, { kind: "item" }>["item"];
+  currency: string;
+}) {
+  const { color, pairings } = parseWineDescription(item.description);
+  const colorChip = color === "赤"
+    ? { label: "赤 RED", bg: "#7a2d3a", text: "#ffe6dc" }
+    : color === "白"
+      ? { label: "白 WHITE", bg: "#d9c98c", text: "#3b2f1a" }
+      : color === "ロゼ"
+        ? { label: "ロゼ ROSÉ", bg: "#c98aa0", text: "#3b1f29" }
+        : null;
+
+  return (
+    <div className="grid h-full w-full animate-fadeIn grid-cols-12 gap-[3vw]">
+      {/* Left: wine identity */}
+      <div className="col-span-6 flex flex-col justify-between py-[2vh]">
+        <div>
+          <div className="mb-[2.5vh] flex items-center gap-[1.5vw]">
+            <span
+              className="h-[2px] w-[3vw]"
+              style={{ background: category.accent ?? "#7a2d3a" }}
+            />
+            <span
+              className="font-display text-[1.4vw] uppercase tracking-[0.3em]"
+              style={{ color: category.accent ?? "#7a2d3a" }}
+            >
+              Bottle Wine
+            </span>
+            {colorChip && (
+              <span
+                className="rounded-full px-[1.4vw] py-[0.5vh] text-[1.2vw] font-bold tracking-widest"
+                style={{ background: colorChip.bg, color: colorChip.text }}
+              >
+                {colorChip.label}
+              </span>
+            )}
+          </div>
+
+          <h2 className="font-display text-[5vw] font-bold leading-[1.05] text-ink">
+            {item.name}
+          </h2>
+
+          {item.badges && item.badges.length > 0 && (
+            <div className="mt-[2vh] flex flex-wrap gap-[0.8vw]">
+              {item.badges.map((b) => (
+                <span
+                  key={b}
+                  className="rounded-full border border-accent/60 px-[1.4vw] py-[0.5vh] text-[1.1vw] font-medium text-accent"
+                >
+                  {b}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="flex items-baseline gap-[1vw]">
+          <span className="font-display text-[2vw] text-muted">{currency}</span>
+          <span className="font-display text-[6vw] font-bold leading-none text-accent">
+            {item.price.toLocaleString("ja-JP")}
+          </span>
+          <span className="text-[1.2vw] text-muted">税込 / ボトル</span>
+        </div>
+      </div>
+
+      {/* Right: pairing showcase */}
+      <div className="relative col-span-6 flex flex-col justify-center overflow-hidden rounded-[1.5vw] p-[3vw]"
+        style={{
+          background: `radial-gradient(ellipse at 20% 30%, ${(category.accent ?? "#7a2d3a")}55, transparent 65%), radial-gradient(ellipse at 80% 80%, ${(category.accent ?? "#7a2d3a")}30, transparent 65%), #110f0c`,
+        }}
+      >
+        <div className="mb-[3vh] flex items-center gap-[1.2vw]">
+          <span
+            className="text-[2.4vw]"
+            style={{ color: category.accent ?? "#e8b14a" }}
+          >
+            ♥
+          </span>
+          <span
+            className="font-display text-[2.6vw] font-bold uppercase tracking-[0.3em]"
+            style={{ color: category.accent ?? "#e8b14a" }}
+          >
+            Pairing
+          </span>
+        </div>
+        <p
+          className="mb-[2.5vh] font-display text-[2vw] font-medium text-ink/80"
+        >
+          こちらと一緒に。
+        </p>
+
+        {pairings.length > 0 ? (
+          <ul className="space-y-[1.5vh]">
+            {pairings.map((p, i) => (
+              <li
+                key={i}
+                className="flex items-baseline gap-[1.5vw]"
+              >
+                <span
+                  className="font-display text-[2vw] font-bold leading-none"
+                  style={{ color: category.accent ?? "#e8b14a" }}
+                >
+                  0{i + 1}
+                </span>
+                <span className="font-display text-[3.4vw] font-bold leading-[1.1] text-ink">
+                  {p}
+                </span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-[1.8vw] text-ink/70">スタッフへお気軽にお声掛けください。</p>
+        )}
+      </div>
     </div>
   );
 }

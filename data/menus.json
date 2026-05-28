@@ -5,10 +5,10 @@
     "currency": "¥"
   },
   "display": {
-    "slideDurationMs": 7000,
+    "slideDurationMs": 14000,
     "showCategoryIntro": true,
-    "categoryIntroDurationMs": 3500,
-    "storyDurationMs": 11000,
+    "categoryIntroDurationMs": 6000,
+    "storyDurationMs": 22000,
     "storyEveryNSlides": 0
   },
   "stories": [
@@ -147,13 +147,15 @@
           "id": "prem-roastbeef",
           "name": "MEATDAYローストビーフ",
           "description": "赤身の旨味が濃い、MEATDAY自慢のしっとりローストビーフ",
-          "price": 1480
+          "price": 1480,
+          "hidden": true
         },
         {
           "id": "prem-yukke",
           "name": "牛の生ハムユッケ",
           "description": "塩気のきいた牛生ハムと濃厚卵黄が溶け合う、香り豊かな大人のユッケ",
-          "price": 1180
+          "price": 1180,
+          "hidden": true
         },
         {
           "id": "prem-croquette",
@@ -166,7 +168,8 @@
           "id": "prem-tebasaki",
           "name": "とくしま阿波尾鶏の手羽先",
           "description": "徳島のブランド「阿波尾鶏」。パリッとした皮、中はジューシー",
-          "price": 1180
+          "price": 1180,
+          "hidden": true
         }
       ]
     },
@@ -200,31 +203,36 @@
           "id": "ahi-namatamago",
           "name": "生卵のアヒージョ",
           "description": "生卵が2つ入ったとろけるアヒージョ。コクと卵のマイルドが相性抜群",
-          "price": 1180
+          "price": 1180,
+          "hidden": true
         },
         {
           "id": "ahi-black",
           "name": "黒アヒージョ",
           "description": "醤油香る和テイストで仕上げた一皿。ワインとも抜群",
-          "price": 1180
+          "price": 1180,
+          "hidden": true
         },
         {
           "id": "ahi-consomme",
           "name": "コンソメアヒージョ",
           "description": "ニンニク無しのオリジナル。他店には無い珍しい一品",
-          "price": 1180
+          "price": 1180,
+          "hidden": true
         },
         {
           "id": "ahi-garlic-bread",
           "name": "ガーリックバケット",
           "description": "ニンニク香る王道人気の激うまバケット",
-          "price": 480
+          "price": 480,
+          "hidden": true
         },
         {
           "id": "ahi-okawari-bread",
           "name": "おかわりバケット",
           "description": "無限にあっていいやつ。おかわり待ったなし！（ニンニク不使用）",
-          "price": 300
+          "price": 300,
+          "hidden": true
         }
       ]
     },
@@ -259,37 +267,43 @@
           "id": "ip-pickles",
           "name": "彩りピクルス",
           "description": "丁度いい酸味はお酒のおつまみにピッタリ",
-          "price": 680
+          "price": 680,
+          "hidden": true
         },
         {
           "id": "ip-nachos",
           "name": "チリ直産！ナチョス",
           "description": "チリ直送の香ばしいナチョス",
-          "price": 680
+          "price": 680,
+          "hidden": true
         },
         {
           "id": "ip-blackcheese",
           "name": "ブラッククリームチーズ",
           "description": "甘口醤油に漬けた3種のチーズ。お酒に最適な1品",
-          "price": 680
+          "price": 680,
+          "hidden": true
         },
         {
           "id": "ip-mekyabetsu",
           "name": "アンチョビ芽キャベツ",
           "description": "特製の味付けで炒め、チーズを掛けた人気の逸品",
-          "price": 780
+          "price": 780,
+          "hidden": true
         },
         {
           "id": "ip-beef-stew-s",
           "name": "とろける牛のビーフシチュー (1人前)",
           "description": "阿波牛を贅沢に使ったコクうまビーフシチュー",
-          "price": 1680
+          "price": 1680,
+          "hidden": true
         },
         {
           "id": "ip-beef-stew-l",
           "name": "とろける牛のビーフシチュー (2〜3人前)",
           "description": "阿波牛を贅沢に使ったコクうまビーフシチュー",
-          "price": 2580
+          "price": 2580,
+          "hidden": true
         },
         {
           "id": "ip-cheesetomato",
@@ -309,7 +323,8 @@
           "id": "ip-unipotato",
           "name": "贅沢うにマヨポテト",
           "description": "ウニをたっぷり使った大人の贅沢ポテト",
-          "price": 880
+          "price": 880,
+          "hidden": true
         },
         {
           "id": "ip-garlicpotato",
@@ -322,19 +337,22 @@
           "id": "ip-cheesefly",
           "name": "サクとろチーズフライ",
           "description": "子供も大好きやみつきチーズポテト",
-          "price": 680
+          "price": 680,
+          "hidden": true
         },
         {
           "id": "ip-cheesepotatobread",
           "name": "チーズポテトバケット",
           "description": "チーズがしっかりきいた極上バケット",
-          "price": 880
+          "price": 880,
+          "hidden": true
         },
         {
           "id": "ip-sausage",
           "name": "ソーセージ盛り合わせ",
           "description": "食べ応えのあるパリッとした皮とジューシーなお肉",
-          "price": 680
+          "price": 680,
+          "hidden": true
         }
       ]
     },
@@ -358,7 +376,8 @@
           "id": "shime-meatsauce",
           "name": "専門店のミートソースパスタ",
           "description": "3日間丁寧に煮込んだ特製ミートソース",
-          "price": 1380
+          "price": 1380,
+          "hidden": true
         },
         {
           "id": "shime-carbonara",
@@ -371,7 +390,8 @@
           "id": "shime-napolitan",
           "name": "昔ながらのナポリタン",
           "description": "ケチャップの甘みと懐かしさを感じるパスタ",
-          "price": 1180
+          "price": 1180,
+          "hidden": true
         },
         {
           "id": "shime-peperoncino",
@@ -384,203 +404,50 @@
           "id": "shime-garlicrice",
           "name": "香ばしいガーリックライス",
           "description": "にんにくたっぷりの香ばしい香りの定番ライス",
-          "price": 880
+          "price": 880,
+          "hidden": true
         },
         {
           "id": "shime-rice-m",
           "name": "ライス (M)",
           "description": "米いっちゃいますか今日だけは",
-          "price": 300
+          "price": 300,
+          "hidden": true
         },
         {
           "id": "shime-rice-l",
           "name": "ライス (L)",
           "description": "炊飯器を空にするつもりですか..",
-          "price": 400
+          "price": 400,
+          "hidden": true
         },
         {
           "id": "shime-catarana",
           "name": "牧場のカタラーナ",
           "description": "パリパリ濃厚な言わずもがなの王道スイーツ",
-          "price": 680
+          "price": 680,
+          "hidden": true
         },
         {
           "id": "shime-icecream",
           "name": "アイスクリーム",
           "description": "バニラアイスにバリバリ揚げパスタを添えて",
-          "price": 380
+          "price": 380,
+          "hidden": true
         },
         {
           "id": "shime-kintoki",
           "name": "木本農園の鳴門金時フライ バニラアイス添え",
           "description": "サクッと揚げたて金時をあまじょっぱく贅沢に",
-          "price": 760
+          "price": 760,
+          "hidden": true
         },
         {
           "id": "shime-yuzu",
           "name": "柚子シャーベット",
           "description": "スッキリ爽やかな甘さで食後の重さをリセット",
-          "price": 380
-        }
-      ]
-    },
-    {
-      "id": "drink-sour",
-      "name": "サワー",
-      "nameEn": "Sour",
-      "accent": "#a3c64e",
-      "items": [
-        {
-          "id": "sour-lemon-premium",
-          "name": "生レモンサワー",
-          "description": "生レモンをまるごと使った究極のレモンサワー",
-          "price": 650,
-          "badges": [
-            "人気"
-          ]
-        },
-        {
-          "id": "sour-lemon",
-          "name": "ふつうのレモンサワー",
-          "price": 550
-        },
-        {
-          "id": "sour-sudachi",
-          "name": "ど田舎すだちサワー",
-          "description": "徳島のすだちをたっぷり",
-          "price": 550,
-          "image": "/menu-images/drink-sour/%E3%81%A9%E7%94%B0%E8%88%8E%E3%81%99%E3%81%A0%E3%81%A1%E3%82%B5%E3%83%AF%E3%83%BC.jpg"
-        },
-        {
-          "id": "sour-plain",
-          "name": "プレーンサワー",
-          "price": 550
-        },
-        {
-          "id": "sour-yuzu",
-          "name": "森のゆずサワー",
-          "price": 550
-        },
-        {
-          "id": "sour-calpis",
-          "name": "カルピスサワー",
-          "price": 550
-        },
-        {
-          "id": "sour-akadama",
-          "name": "赤玉パンチサワー",
-          "price": 550
-        }
-      ]
-    },
-    {
-      "id": "drink-shochu",
-      "name": "焼酎・果実酒",
-      "nameEn": "Shochu",
-      "accent": "#b8a37e",
-      "items": [
-        {
-          "id": "sho-mugi",
-          "name": "麦焼酎",
-          "description": "ロック・水・ソーダ・ウーロン茶・緑茶",
-          "price": 500
-        },
-        {
-          "id": "sho-imo",
-          "name": "芋焼酎",
-          "description": "ロック・水・ソーダ・ウーロン茶・緑茶",
-          "price": 500
-        },
-        {
-          "id": "sho-matsurika",
-          "name": "茉莉花",
-          "description": "ロック・水・ソーダ・ウーロン茶・緑茶",
-          "price": 500
-        },
-        {
-          "id": "sho-tantakatan",
-          "name": "鍛高譚",
-          "description": "ロック・水・ソーダ・ウーロン茶・緑茶",
-          "price": 500
-        },
-        {
-          "id": "sho-sudachi",
-          "name": "すだち酒",
-          "description": "ロック・水・ソーダ",
-          "price": 500
-        },
-        {
-          "id": "sho-ume",
-          "name": "梅酒",
-          "description": "ロック・水・ソーダ",
-          "price": 500
-        }
-      ]
-    },
-    {
-      "id": "drink-beer",
-      "name": "ビール",
-      "nameEn": "Beer",
-      "accent": "#e8b14a",
-      "items": [
-        {
-          "id": "beer-nama",
-          "name": "生ビール",
-          "price": 600
-        },
-        {
-          "id": "beer-shandy",
-          "name": "シャンディーガフ",
-          "description": "ビール＋ジンジャエール",
-          "price": 500
-        },
-        {
-          "id": "beer-rubeer",
-          "name": "ルビール",
-          "description": "ビール＋ピンクグレープフルーツ",
-          "price": 500
-        },
-        {
-          "id": "beer-carlsberg",
-          "name": "カールスバーグ",
-          "price": 650
-        }
-      ]
-    },
-    {
-      "id": "drink-wine-cocktail",
-      "name": "ワイン＆ワインカクテル",
-      "nameEn": "Wine & Wine Cocktails",
-      "accent": "#7a2d3a",
-      "items": [
-        {
-          "id": "wc-glass",
-          "name": "グラスワイン",
-          "price": 580
-        },
-        {
-          "id": "wc-kitty",
-          "name": "キティー",
-          "description": "赤ワイン＋ジンジャエール",
-          "price": 580
-        },
-        {
-          "id": "wc-kalimocho",
-          "name": "カリモーチョ",
-          "description": "赤ワイン＋コーラ",
-          "price": 580
-        },
-        {
-          "id": "wc-operator",
-          "name": "オペレーター",
-          "description": "白ワイン＋ジンジャエール",
-          "price": 580
-        },
-        {
-          "id": "wc-cooler",
-          "name": "ワインクーラー",
-          "description": "赤ワイン＋オレンジジュース",
-          "price": 580
+          "price": 380,
+          "hidden": true
         }
       ]
     },
@@ -625,215 +492,6 @@
           "name": "ルイ・ジャド シャブリ",
           "description": "白｜相性○：ローストビーフ／チーズトマト",
           "price": 7400
-        }
-      ]
-    },
-    {
-      "id": "drink-champagne",
-      "name": "シャンパン",
-      "nameEn": "Champagne",
-      "accent": "#cfa84b",
-      "items": [
-        {
-          "id": "champ-moet-impe",
-          "name": "モエ・エ・シャンドン アンペリアル ブリュット",
-          "description": "青リンゴや白い花のような香りと、きめ細やかな泡立ち",
-          "price": 18000
-        },
-        {
-          "id": "champ-vc-yellow",
-          "name": "ヴーヴ・クリコ イエローラベル ブリュット",
-          "description": "1772年創業、伝統あるメゾンを象徴する一本",
-          "price": 23000
-        },
-        {
-          "id": "champ-moet-nectar",
-          "name": "モエ・エ・シャンドン ネクターアンペリアル ロゼ ドライ",
-          "description": "鮮やかなサーモンピンクのロゼ・シャンパーニュ",
-          "price": 30000
-        },
-        {
-          "id": "champ-soumei",
-          "name": "ソウメイ ブリュット",
-          "description": "白い花や洋梨を思わせる華やかな香り、なめらかな泡",
-          "price": 60000,
-          "badges": [
-            "最高峰"
-          ]
-        },
-        {
-          "id": "champ-perrier-jouet",
-          "name": "ペリエ・ジュエ ベルエポック 白",
-          "description": "繊細でエレガントな味わい、メゾンを代表する一本",
-          "price": 70000,
-          "badges": [
-            "最高峰"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "drink-cocktail",
-      "name": "カクテル",
-      "nameEn": "Cocktail",
-      "accent": "#d68aa8",
-      "items": [
-        {
-          "id": "ck-gintonic",
-          "name": "ジントニック",
-          "price": 500
-        },
-        {
-          "id": "ck-ginbuck",
-          "name": "ジンバック",
-          "price": 500
-        },
-        {
-          "id": "ck-ginrickey",
-          "name": "ジンリッキー",
-          "price": 500
-        },
-        {
-          "id": "ck-moscow",
-          "name": "モスコミュール",
-          "price": 500
-        },
-        {
-          "id": "ck-fuzzy",
-          "name": "ファジーネーブル",
-          "price": 500
-        },
-        {
-          "id": "ck-summer",
-          "name": "サマーティー",
-          "price": 500
-        },
-        {
-          "id": "ck-cassis",
-          "name": "カシスウーロン",
-          "price": 500,
-          "image": "/menu-images/drink-cocktail/%E3%82%AB%E3%82%B7%E3%82%B9%E3%82%A6%E3%83%BC%E3%83%AD%E3%83%B3.jpg"
-        }
-      ]
-    },
-    {
-      "id": "drink-sangria",
-      "name": "オリジナルサングリア",
-      "nameEn": "Sangria",
-      "accent": "#a73d3d",
-      "items": [
-        {
-          "id": "sg-house",
-          "name": "自家製サングリア",
-          "description": "ロック・ソーダ",
-          "price": 680,
-          "badges": [
-            "自家製"
-          ]
-        },
-        {
-          "id": "sg-cooler",
-          "name": "サングリアクーラー",
-          "description": "サングリア＋オレンジジュース",
-          "price": 600
-        }
-      ]
-    },
-    {
-      "id": "drink-highball",
-      "name": "ハイボール",
-      "nameEn": "Highball",
-      "accent": "#9a7eb4",
-      "items": [
-        {
-          "id": "hb-lemon",
-          "name": "レモンハイボール",
-          "description": "生レモンをまるごと使った",
-          "price": 600
-        },
-        {
-          "id": "hb-ginger",
-          "name": "ジンジャーハイボール",
-          "price": 550
-        },
-        {
-          "id": "hb-supersoda",
-          "name": "超炭酸ハイボール",
-          "price": 550
-        },
-        {
-          "id": "hb-calpis",
-          "name": "カルピスハイボール",
-          "price": 550
-        },
-        {
-          "id": "hb-coke",
-          "name": "コークハイボール",
-          "price": 550
-        },
-        {
-          "id": "hb-sudachi",
-          "name": "すだちハイボール",
-          "price": 550
-        }
-      ]
-    },
-    {
-      "id": "drink-non-alc",
-      "name": "ノンアルコール・ソフト",
-      "nameEn": "Non-Alcoholic",
-      "accent": "#88aabb",
-      "items": [
-        {
-          "id": "na-nonalc-beer",
-          "name": "ノンアルコールビール",
-          "price": 500
-        },
-        {
-          "id": "na-nonalc-ume",
-          "name": "ノンアル梅酒",
-          "price": 500
-        },
-        {
-          "id": "na-oolong",
-          "name": "ウーロン茶",
-          "price": 400
-        },
-        {
-          "id": "na-green",
-          "name": "緑茶",
-          "price": 400
-        },
-        {
-          "id": "na-cola",
-          "name": "コーラ",
-          "price": 400
-        },
-        {
-          "id": "na-orange",
-          "name": "オレンジ",
-          "price": 400,
-          "image": "/menu-images/drink-non-alc/%E3%82%AA%E3%83%AC%E3%83%B3%E3%82%B8.jpg"
-        },
-        {
-          "id": "na-calpis",
-          "name": "カルピス",
-          "price": 400
-        },
-        {
-          "id": "na-sudachi",
-          "name": "すだちソーダ",
-          "price": 400
-        },
-        {
-          "id": "na-ginger",
-          "name": "ジンジャエール",
-          "price": 400
-        },
-        {
-          "id": "na-yuzu",
-          "name": "ゆずソーダ",
-          "price": 400
         }
       ]
     }
