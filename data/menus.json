@@ -1,7 +1,7 @@
 {
   "restaurant": {
-    "name": "和食処 まかろん",
-    "tagline": "本日もご来店ありがとうございます",
+    "name": "アカミニクバル",
+    "tagline": "MEATDAY. MEETNIGHT — 徳島唯一の赤身肉専門店",
     "currency": "¥"
   },
   "display": {
@@ -11,303 +11,777 @@
   },
   "categories": [
     {
-      "id": "today",
-      "name": "本日のおすすめ",
-      "nameEn": "Today's Special",
-      "accent": "#e8b14a",
+      "id": "meat-platter",
+      "name": "看板 肉盛り",
+      "nameEn": "Signature Meat Platter",
+      "accent": "#c0392b",
       "items": [
         {
-          "id": "today-001",
-          "name": "金目鯛の煮付け",
-          "nameEn": "Simmered Golden Eye Snapper",
-          "description": "脂ののった金目鯛を醤油と生姜でじっくり煮込みました",
-          "price": 2480,
-          "image": "https://images.unsplash.com/photo-1580959375944-abd7e991f971?w=1600&q=80",
-          "badges": ["数量限定", "本日入荷"]
+          "id": "platter-3",
+          "name": "3種盛り",
+          "nameEn": "3-Cut Platter",
+          "description": "60g × 3種。好みの部位を選んで頼める看板肉盛り",
+          "price": 3480,
+          "badges": [
+            "看板"
+          ]
         },
         {
-          "id": "today-002",
-          "name": "牡蠣の土手鍋",
-          "nameEn": "Oyster Hot Pot",
-          "description": "広島産の大粒牡蠣と季節野菜の味噌仕立て",
-          "price": 1980,
-          "image": "https://images.unsplash.com/photo-1606851094291-6efae152bb87?w=1600&q=80",
-          "badges": ["温かい"]
+          "id": "platter-5",
+          "name": "5種盛り",
+          "nameEn": "5-Cut Platter",
+          "description": "60g × 5種。お任せ可能、希少部位も選べる",
+          "price": 4980,
+          "badges": [
+            "看板",
+            "人気"
+          ]
         },
         {
-          "id": "today-003",
-          "name": "黒毛和牛の炙り寿司",
-          "nameEn": "Seared Wagyu Sushi",
-          "description": "A5ランクの黒毛和牛を軽く炙り、塩と山葵で",
-          "price": 2200,
-          "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1600&q=80",
-          "badges": ["人気"]
+          "id": "platter-8",
+          "name": "8種盛り",
+          "nameEn": "8-Cut Platter",
+          "description": "60g × 8種。シャトーブリアン追加は+700円",
+          "price": 6980,
+          "badges": [
+            "看板",
+            "贅沢"
+          ],
+          "image": "/menu-images/meat-platter/8%E7%A8%AE%E7%9B%9B%E3%82%8A%E5%90%88%E3%82%8F%E3%81%9B.jpg"
         }
       ]
     },
     {
-      "id": "appetizers",
-      "name": "お通し・前菜",
-      "nameEn": "Appetizers",
+      "id": "meat-premium",
+      "name": "肉の逸品皿",
+      "nameEn": "Premium Meat",
+      "accent": "#9b2c20",
+      "items": [
+        {
+          "id": "prem-chateaubriand",
+          "name": "国産阿波牛のシャトーブリアンステーキ",
+          "description": "柔らかさ極まる、阿波牛のステーキ。中心だけが持つ、しっとりとろける旨さ",
+          "price": 3980,
+          "badges": [
+            "100gあたり",
+            "最高峰"
+          ],
+          "image": "/menu-images/meat-premium/%E3%82%B7%E3%83%A3%E3%83%88%E3%83%BC%E3%83%95%E3%82%99%E3%83%AA%E3%82%A2%E3%83%B3%EF%BC%92.jpg"
+        },
+        {
+          "id": "prem-arose",
+          "name": "特製アロゼ牛ステーキ",
+          "description": "熱々のバターと肉汁を何度もかけ流し、香りと旨味をまとわせたアロゼ仕立て",
+          "price": 2480,
+          "badges": [
+            "100gあたり"
+          ]
+        },
+        {
+          "id": "prem-katsu-s",
+          "name": "極上赤身牛カツ (60g)",
+          "description": "旨味の濃い赤身をさっと揚げ、外はサクッ、中はしっとりレアに",
+          "price": 1080,
+          "image": "/menu-images/meat-premium/%E7%89%9B%E3%81%8B%E3%81%A4.jpg"
+        },
+        {
+          "id": "prem-katsu-l",
+          "name": "極上赤身牛カツ (120g)",
+          "description": "旨味の濃い赤身をさっと揚げ、外はサクッ、中はしっとりレアに",
+          "price": 1980,
+          "badges": [
+            "大満足"
+          ]
+        },
+        {
+          "id": "prem-tataki",
+          "name": "専門店の特製赤身たたき",
+          "description": "赤身の旨味をギュッと閉じ込めた、専門店自慢の特製和牛たたき",
+          "price": 1680
+        },
+        {
+          "id": "prem-roastbeef",
+          "name": "MEATDAYローストビーフ",
+          "description": "赤身の旨味が濃い、MEATDAY自慢のしっとりローストビーフ",
+          "price": 1480
+        },
+        {
+          "id": "prem-yukke",
+          "name": "牛の生ハムユッケ",
+          "description": "塩気のきいた牛生ハムと濃厚卵黄が溶け合う、香り豊かな大人のユッケ",
+          "price": 1180
+        },
+        {
+          "id": "prem-croquette",
+          "name": "MEATDAYコロッケ",
+          "description": "ほくほくじゃがいもに肉の旨味を閉じ込めた、MEATDAY特製コロッケ",
+          "price": 680
+        },
+        {
+          "id": "prem-tebasaki",
+          "name": "とくしま阿波尾鶏の手羽先",
+          "description": "徳島のブランド「阿波尾鶏」。パリッとした皮、中はジューシー",
+          "price": 1180
+        }
+      ]
+    },
+    {
+      "id": "ahijo",
+      "name": "アヒージョ",
+      "nameEn": "Ajillo",
+      "accent": "#d68a3a",
+      "items": [
+        {
+          "id": "ahi-unijo",
+          "name": "特製ウニージョ",
+          "description": "旨味の爆弾、当店最強のアヒージョ。圧倒的なリピート率！",
+          "price": 1380,
+          "badges": [
+            "人気No.1"
+          ],
+          "image": "/menu-images/ahijo/%E3%82%A6%E3%83%8B%E3%83%BC%E3%82%B7%E3%82%99%E3%83%A7.jpg"
+        },
+        {
+          "id": "ahi-meatday",
+          "name": "本日のミートデイアヒージョ",
+          "description": "仕入れに合わせてご提供。本日の中身はスタッフまで",
+          "price": 980,
+          "badges": [
+            "日替わり"
+          ],
+          "image": "/menu-images/ahijo/%E3%83%9F%E3%83%BC%E3%83%88%E3%83%86%E3%82%99%E3%82%A4%E3%82%A2%E3%83%92%E3%83%BC%E3%82%B7%E3%82%99%E3%83%A7.jpg"
+        },
+        {
+          "id": "ahi-namatamago",
+          "name": "生卵のアヒージョ",
+          "description": "生卵が2つ入ったとろけるアヒージョ。コクと卵のマイルドが相性抜群",
+          "price": 1180
+        },
+        {
+          "id": "ahi-black",
+          "name": "黒アヒージョ",
+          "description": "醤油香る和テイストで仕上げた一皿。ワインとも抜群",
+          "price": 1180
+        },
+        {
+          "id": "ahi-consomme",
+          "name": "コンソメアヒージョ",
+          "description": "ニンニク無しのオリジナル。他店には無い珍しい一品",
+          "price": 1180
+        },
+        {
+          "id": "ahi-garlic-bread",
+          "name": "ガーリックバケット",
+          "description": "ニンニク香る王道人気の激うまバケット",
+          "price": 480
+        },
+        {
+          "id": "ahi-okawari-bread",
+          "name": "おかわりバケット",
+          "description": "無限にあっていいやつ。おかわり待ったなし！（ニンニク不使用）",
+          "price": 300
+        }
+      ]
+    },
+    {
+      "id": "ippin",
+      "name": "逸品料理",
+      "nameEn": "Side Dishes",
       "accent": "#7eb47e",
       "items": [
         {
-          "id": "app-001",
-          "name": "枝豆の塩茹で",
-          "price": 480,
-          "description": "丹波産の極上枝豆"
+          "id": "ip-salad-5",
+          "name": "5種のサラダ",
+          "description": "新鮮野菜の彩り豊かなサラダ",
+          "price": 880
         },
         {
-          "id": "app-002",
-          "name": "出汁巻き玉子",
+          "id": "ip-caesar",
+          "name": "シーザーサラダ",
+          "description": "当店自慢のドレッシングたっぷり",
+          "price": 980
+        },
+        {
+          "id": "ip-potatosalad",
+          "name": "MEATDAYポテトサラダ",
+          "description": "アカミニクバル特製、旨みたっぷり",
           "price": 780,
-          "description": "鰹と昆布の一番出汁でふんわりと",
-          "image": "https://images.unsplash.com/photo-1607301406259-dfb186e15de8?w=1600&q=80"
+          "image": "/menu-images/ippin/%E3%83%9B%E3%82%9A%E3%83%86%E3%83%88%E3%82%B5%E3%83%A9%E3%82%BF%E3%82%99.jpg"
         },
         {
-          "id": "app-003",
-          "name": "胡麻豆腐",
-          "price": 580,
-          "description": "自家製の濃厚胡麻豆腐"
+          "id": "ip-pickles",
+          "name": "彩りピクルス",
+          "description": "丁度いい酸味はお酒のおつまみにピッタリ",
+          "price": 680
         },
         {
-          "id": "app-004",
-          "name": "なすの揚げ浸し",
-          "price": 680,
-          "description": "とろりとした賀茂茄子に生姜醤油"
+          "id": "ip-nachos",
+          "name": "チリ直産！ナチョス",
+          "description": "チリ直送の香ばしいナチョス",
+          "price": 680
         },
         {
-          "id": "app-005",
-          "name": "もずく酢",
-          "price": 480,
-          "description": "沖縄産太もずくをさっぱりと"
+          "id": "ip-blackcheese",
+          "name": "ブラッククリームチーズ",
+          "description": "甘口醤油に漬けた3種のチーズ。お酒に最適な1品",
+          "price": 680
         },
         {
-          "id": "app-006",
-          "name": "鴨ロース",
-          "price": 980,
-          "description": "国産合鴨を低温調理で",
-          "image": "https://images.unsplash.com/photo-1544025162-d76694265947?w=1600&q=80"
+          "id": "ip-mekyabetsu",
+          "name": "アンチョビ芽キャベツ",
+          "description": "特製の味付けで炒め、チーズを掛けた人気の逸品",
+          "price": 780
+        },
+        {
+          "id": "ip-beef-stew-s",
+          "name": "とろける牛のビーフシチュー (1人前)",
+          "description": "阿波牛を贅沢に使ったコクうまビーフシチュー",
+          "price": 1680
+        },
+        {
+          "id": "ip-beef-stew-l",
+          "name": "とろける牛のビーフシチュー (2〜3人前)",
+          "description": "阿波牛を贅沢に使ったコクうまビーフシチュー",
+          "price": 2580
+        },
+        {
+          "id": "ip-cheesetomato",
+          "name": "エビとホタテのチーズトマト",
+          "description": "海の旨みとコクがとけあう、やみつきの一皿",
+          "price": 1180
+        },
+        {
+          "id": "ip-butaershoyu",
+          "name": "イカとエビのバター醤油",
+          "description": "バター醤油をしっかり効かした鉄板メニュー",
+          "price": 980
+        },
+        {
+          "id": "ip-unipotato",
+          "name": "贅沢うにマヨポテト",
+          "description": "ウニをたっぷり使った大人の贅沢ポテト",
+          "price": 880
+        },
+        {
+          "id": "ip-garlicpotato",
+          "name": "スパイシーガーリックポテト",
+          "description": "香ばしいスパイスとにんにくのポテト",
+          "price": 880,
+          "image": "/menu-images/ippin/%E3%82%B9%E3%83%8F%E3%82%9A%E3%82%A4%E3%82%B7%E3%83%BC%E3%82%AB%E3%82%99%E3%83%BC%E3%83%AA%E3%83%83%E3%82%AF%E3%83%9B%E3%82%9A%E3%83%86%E3%83%88.jpg"
+        },
+        {
+          "id": "ip-cheesefly",
+          "name": "サクとろチーズフライ",
+          "description": "子供も大好きやみつきチーズポテト",
+          "price": 680
+        },
+        {
+          "id": "ip-cheesepotatobread",
+          "name": "チーズポテトバケット",
+          "description": "チーズがしっかりきいた極上バケット",
+          "price": 880
+        },
+        {
+          "id": "ip-sausage",
+          "name": "ソーセージ盛り合わせ",
+          "description": "食べ応えのあるパリッとした皮とジューシーなお肉",
+          "price": 680
         }
       ]
     },
     {
-      "id": "sashimi",
-      "name": "お造り",
-      "nameEn": "Sashimi",
-      "accent": "#5a9cd6",
-      "items": [
-        {
-          "id": "sashi-001",
-          "name": "本日のお造り三種盛り",
-          "price": 1680,
-          "description": "市場直送の鮮魚を職人が厳選",
-          "image": "https://images.unsplash.com/photo-1583623025817-d180a2221d0a?w=1600&q=80",
-          "badges": ["人気"]
-        },
-        {
-          "id": "sashi-002",
-          "name": "本日のお造り五種盛り",
-          "price": 2680,
-          "description": "贅沢な五点盛り合わせ",
-          "image": "https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?w=1600&q=80"
-        },
-        {
-          "id": "sashi-003",
-          "name": "中トロ",
-          "price": 1980,
-          "description": "本鮪の中トロを贅沢に"
-        },
-        {
-          "id": "sashi-004",
-          "name": "炙りしめ鯖",
-          "price": 980,
-          "description": "肉厚しめ鯖を軽く炙って香ばしく"
-        },
-        {
-          "id": "sashi-005",
-          "name": "鯛の昆布締め",
-          "price": 1280,
-          "description": "天然真鯛を一晩昆布締めに"
-        }
-      ]
-    },
-    {
-      "id": "grill",
-      "name": "焼き物",
-      "nameEn": "Grilled",
-      "accent": "#d67a4a",
-      "items": [
-        {
-          "id": "grill-001",
-          "name": "銀だらの西京焼き",
-          "price": 1680,
-          "description": "白味噌に三日間漬け込んだ銀だら",
-          "image": "https://images.unsplash.com/photo-1535400875775-0fe8ba2c1f12?w=1600&q=80",
-          "badges": ["人気"]
-        },
-        {
-          "id": "grill-002",
-          "name": "鰤の塩焼き",
-          "price": 1480,
-          "description": "脂ののった寒鰤を塩でシンプルに"
-        },
-        {
-          "id": "grill-003",
-          "name": "厚切り牛タン塩焼き",
-          "price": 1880,
-          "description": "肉厚の牛タンを炭火で香ばしく",
-          "image": "https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=1600&q=80"
-        },
-        {
-          "id": "grill-004",
-          "name": "若鶏の柚子胡椒焼き",
-          "price": 980,
-          "description": "国産若鶏に自家製柚子胡椒"
-        },
-        {
-          "id": "grill-005",
-          "name": "車海老の塩焼き",
-          "price": 1480,
-          "description": "活け車海老を炭火で"
-        }
-      ]
-    },
-    {
-      "id": "tempura",
-      "name": "天ぷら",
-      "nameEn": "Tempura",
+      "id": "shime",
+      "name": "〆はコレ",
+      "nameEn": "Closing Dishes",
       "accent": "#d4a574",
       "items": [
         {
-          "id": "tem-001",
-          "name": "天ぷら盛り合わせ",
-          "price": 1980,
-          "description": "海老二本と季節野菜五種",
-          "image": "https://images.unsplash.com/photo-1581781870027-04d11b1b88f4?w=1600&q=80",
-          "badges": ["人気"]
+          "id": "shime-unicream",
+          "name": "特製ウニクリームパスタ",
+          "description": "ウニとクリームの絶品パスタ。圧倒的人気",
+          "price": 1780,
+          "badges": [
+            "人気No.1"
+          ],
+          "image": "/menu-images/shime/%E3%82%A6%E3%83%8B%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%A0%E3%83%8F%E3%82%9A%E3%82%B9%E3%82%BF2.jpg"
         },
         {
-          "id": "tem-002",
-          "name": "海老天ぷら",
-          "price": 1280,
-          "description": "大振りの活け海老を二本"
+          "id": "shime-meatsauce",
+          "name": "専門店のミートソースパスタ",
+          "description": "3日間丁寧に煮込んだ特製ミートソース",
+          "price": 1380
         },
         {
-          "id": "tem-003",
-          "name": "野菜天ぷら盛り合わせ",
-          "price": 980,
-          "description": "旬の野菜を七種"
+          "id": "shime-carbonara",
+          "name": "本格的濃厚カルボナーラ",
+          "description": "濃厚なクリームソースとチーズの旨み",
+          "price": 1580,
+          "image": "/menu-images/shime/%E3%82%AB%E3%83%AB%E3%83%9B%E3%82%99%E3%83%8A%E3%83%BC%E3%83%A9.jpg"
         },
         {
-          "id": "tem-004",
-          "name": "穴子天ぷら",
-          "price": 1480,
-          "description": "ふっくらと揚げた一本穴子"
+          "id": "shime-napolitan",
+          "name": "昔ながらのナポリタン",
+          "description": "ケチャップの甘みと懐かしさを感じるパスタ",
+          "price": 1180
+        },
+        {
+          "id": "shime-peperoncino",
+          "name": "王道ペペロンチーノ",
+          "description": "にんにくと唐辛子の香りが食欲をそそる王道パスタ",
+          "price": 1180,
+          "image": "/menu-images/shime/%E3%83%98%E3%82%9A%E3%83%98%E3%82%9A%E3%83%AD%E3%83%B3%E3%83%81%E3%83%BC%E3%83%8E.jpg"
+        },
+        {
+          "id": "shime-garlicrice",
+          "name": "香ばしいガーリックライス",
+          "description": "にんにくたっぷりの香ばしい香りの定番ライス",
+          "price": 880
+        },
+        {
+          "id": "shime-rice-m",
+          "name": "ライス (M)",
+          "description": "米いっちゃいますか今日だけは",
+          "price": 300
+        },
+        {
+          "id": "shime-rice-l",
+          "name": "ライス (L)",
+          "description": "炊飯器を空にするつもりですか..",
+          "price": 400
+        },
+        {
+          "id": "shime-catarana",
+          "name": "牧場のカタラーナ",
+          "description": "パリパリ濃厚な言わずもがなの王道スイーツ",
+          "price": 680
+        },
+        {
+          "id": "shime-icecream",
+          "name": "アイスクリーム",
+          "description": "バニラアイスにバリバリ揚げパスタを添えて",
+          "price": 380
+        },
+        {
+          "id": "shime-kintoki",
+          "name": "木本農園の鳴門金時フライ バニラアイス添え",
+          "description": "サクッと揚げたて金時をあまじょっぱく贅沢に",
+          "price": 760
+        },
+        {
+          "id": "shime-yuzu",
+          "name": "柚子シャーベット",
+          "description": "スッキリ爽やかな甘さで食後の重さをリセット",
+          "price": 380
         }
       ]
     },
     {
-      "id": "rice",
-      "name": "御飯物",
-      "nameEn": "Rice",
+      "id": "drink-sour",
+      "name": "サワー",
+      "nameEn": "Sour",
+      "accent": "#a3c64e",
+      "items": [
+        {
+          "id": "sour-lemon-premium",
+          "name": "生レモンサワー",
+          "description": "生レモンをまるごと使った究極のレモンサワー",
+          "price": 650,
+          "badges": [
+            "人気"
+          ]
+        },
+        {
+          "id": "sour-lemon",
+          "name": "ふつうのレモンサワー",
+          "price": 550
+        },
+        {
+          "id": "sour-sudachi",
+          "name": "ど田舎すだちサワー",
+          "description": "徳島のすだちをたっぷり",
+          "price": 550
+        },
+        {
+          "id": "sour-plain",
+          "name": "プレーンサワー",
+          "price": 550
+        },
+        {
+          "id": "sour-yuzu",
+          "name": "森のゆずサワー",
+          "price": 550
+        },
+        {
+          "id": "sour-calpis",
+          "name": "カルピスサワー",
+          "price": 550
+        },
+        {
+          "id": "sour-akadama",
+          "name": "赤玉パンチサワー",
+          "price": 550
+        }
+      ]
+    },
+    {
+      "id": "drink-shochu",
+      "name": "焼酎・果実酒",
+      "nameEn": "Shochu",
       "accent": "#b8a37e",
       "items": [
         {
-          "id": "rice-001",
-          "name": "土鍋ご飯（しらすと生姜）",
-          "price": 1280,
-          "description": "二〜三名様分。注文より三十分",
-          "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1600&q=80",
-          "badges": ["時間要"]
+          "id": "sho-mugi",
+          "name": "麦焼酎",
+          "description": "ロック・水・ソーダ・ウーロン茶・緑茶",
+          "price": 500
         },
         {
-          "id": "rice-002",
-          "name": "鯛茶漬け",
-          "price": 1480,
-          "description": "胡麻ダレに漬けた鯛を熱い出汁で",
-          "image": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=1600&q=80"
+          "id": "sho-imo",
+          "name": "芋焼酎",
+          "description": "ロック・水・ソーダ・ウーロン茶・緑茶",
+          "price": 500
         },
         {
-          "id": "rice-003",
-          "name": "うな重",
-          "price": 3480,
-          "description": "国産鰻を丹念に焼き上げて",
-          "image": "https://images.unsplash.com/photo-1564834744159-ff0ea41ba4b9?w=1600&q=80",
-          "badges": ["特上"]
+          "id": "sho-matsurika",
+          "name": "茉莉花",
+          "description": "ロック・水・ソーダ・ウーロン茶・緑茶",
+          "price": 500
         },
         {
-          "id": "rice-004",
-          "name": "鮭といくらの親子丼",
-          "price": 1680,
-          "description": "脂ののった鮭と特製醤油漬けいくら"
+          "id": "sho-tantakatan",
+          "name": "鍛高譚",
+          "description": "ロック・水・ソーダ・ウーロン茶・緑茶",
+          "price": 500
+        },
+        {
+          "id": "sho-sudachi",
+          "name": "すだち酒",
+          "description": "ロック・水・ソーダ",
+          "price": 500
+        },
+        {
+          "id": "sho-ume",
+          "name": "梅酒",
+          "description": "ロック・水・ソーダ",
+          "price": 500
         }
       ]
     },
     {
-      "id": "dessert",
-      "name": "甘味",
-      "nameEn": "Dessert",
+      "id": "drink-beer",
+      "name": "ビール",
+      "nameEn": "Beer",
+      "accent": "#e8b14a",
+      "items": [
+        {
+          "id": "beer-nama",
+          "name": "生ビール",
+          "price": 600
+        },
+        {
+          "id": "beer-shandy",
+          "name": "シャンディーガフ",
+          "description": "ビール＋ジンジャエール",
+          "price": 500
+        },
+        {
+          "id": "beer-rubeer",
+          "name": "ルビール",
+          "description": "ビール＋ピンクグレープフルーツ",
+          "price": 500
+        },
+        {
+          "id": "beer-carlsberg",
+          "name": "カールスバーグ",
+          "price": 650
+        }
+      ]
+    },
+    {
+      "id": "drink-wine-cocktail",
+      "name": "ワイン＆ワインカクテル",
+      "nameEn": "Wine & Wine Cocktails",
+      "accent": "#7a2d3a",
+      "items": [
+        {
+          "id": "wc-glass",
+          "name": "グラスワイン",
+          "price": 580
+        },
+        {
+          "id": "wc-kitty",
+          "name": "キティー",
+          "description": "赤ワイン＋ジンジャエール",
+          "price": 580
+        },
+        {
+          "id": "wc-kalimocho",
+          "name": "カリモーチョ",
+          "description": "赤ワイン＋コーラ",
+          "price": 580
+        },
+        {
+          "id": "wc-operator",
+          "name": "オペレーター",
+          "description": "白ワイン＋ジンジャエール",
+          "price": 580
+        },
+        {
+          "id": "wc-cooler",
+          "name": "ワインクーラー",
+          "description": "赤ワイン＋オレンジジュース",
+          "price": 580
+        }
+      ]
+    },
+    {
+      "id": "drink-bottle",
+      "name": "ボトルワイン",
+      "nameEn": "Bottle Wine",
+      "accent": "#5a1d28",
+      "items": [
+        {
+          "id": "bw-rothschild-r",
+          "name": "ドメーヌ・バロン・ロートシルト ルージュ",
+          "description": "赤｜相性○：ローストビーフ／チーズトマト／ウニクリームパスタ",
+          "price": 4800
+        },
+        {
+          "id": "bw-mompera",
+          "name": "シャトー・モンペラ ルージュ",
+          "description": "赤｜相性○：アヒージョ／ガーリックライス",
+          "price": 5400
+        },
+        {
+          "id": "bw-brett-merlot",
+          "name": "ブレット&バター メルロー",
+          "description": "赤｜相性○：牛カツ／カルボナーラ／ミートソースパスタ",
+          "price": 7400
+        },
+        {
+          "id": "bw-calera",
+          "name": "カレラ ピノ・ノワール",
+          "description": "赤｜相性○：アロゼ牛ステーキ／赤身タタキ／ビーフシチュー",
+          "price": 9800
+        },
+        {
+          "id": "bw-rothschild-w",
+          "name": "ドメーヌ・バロン・ロートシルト ブラン",
+          "description": "白｜相性○：チーズポテトバケット／ウニクリームパスタ／サラダ",
+          "price": 4800
+        },
+        {
+          "id": "bw-jadot-chablis",
+          "name": "ルイ・ジャド シャブリ",
+          "description": "白｜相性○：ローストビーフ／チーズトマト",
+          "price": 7400
+        }
+      ]
+    },
+    {
+      "id": "drink-champagne",
+      "name": "シャンパン",
+      "nameEn": "Champagne",
+      "accent": "#cfa84b",
+      "items": [
+        {
+          "id": "champ-moet-impe",
+          "name": "モエ・エ・シャンドン アンペリアル ブリュット",
+          "description": "青リンゴや白い花のような香りと、きめ細やかな泡立ち",
+          "price": 18000
+        },
+        {
+          "id": "champ-vc-yellow",
+          "name": "ヴーヴ・クリコ イエローラベル ブリュット",
+          "description": "1772年創業、伝統あるメゾンを象徴する一本",
+          "price": 23000
+        },
+        {
+          "id": "champ-moet-nectar",
+          "name": "モエ・エ・シャンドン ネクターアンペリアル ロゼ ドライ",
+          "description": "鮮やかなサーモンピンクのロゼ・シャンパーニュ",
+          "price": 30000
+        },
+        {
+          "id": "champ-soumei",
+          "name": "ソウメイ ブリュット",
+          "description": "白い花や洋梨を思わせる華やかな香り、なめらかな泡",
+          "price": 60000,
+          "badges": [
+            "最高峰"
+          ]
+        },
+        {
+          "id": "champ-perrier-jouet",
+          "name": "ペリエ・ジュエ ベルエポック 白",
+          "description": "繊細でエレガントな味わい、メゾンを代表する一本",
+          "price": 70000,
+          "badges": [
+            "最高峰"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drink-cocktail",
+      "name": "カクテル",
+      "nameEn": "Cocktail",
       "accent": "#d68aa8",
       "items": [
         {
-          "id": "des-001",
-          "name": "本日の和菓子",
-          "price": 580,
-          "description": "季節の上生菓子と抹茶"
+          "id": "ck-gintonic",
+          "name": "ジントニック",
+          "price": 500
         },
         {
-          "id": "des-002",
-          "name": "黒胡麻アイス最中",
-          "price": 480,
-          "description": "自家製アイスを最中で",
-          "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=1600&q=80"
+          "id": "ck-ginbuck",
+          "name": "ジンバック",
+          "price": 500
         },
         {
-          "id": "des-003",
-          "name": "わらび餅",
-          "price": 680,
-          "description": "本わらび粉使用、黄な粉と黒蜜で"
+          "id": "ck-ginrickey",
+          "name": "ジンリッキー",
+          "price": 500
+        },
+        {
+          "id": "ck-moscow",
+          "name": "モスコミュール",
+          "price": 500
+        },
+        {
+          "id": "ck-fuzzy",
+          "name": "ファジーネーブル",
+          "price": 500
+        },
+        {
+          "id": "ck-summer",
+          "name": "サマーティー",
+          "price": 500
+        },
+        {
+          "id": "ck-cassis",
+          "name": "カシスウーロン",
+          "price": 500
         }
       ]
     },
     {
-      "id": "drinks",
-      "name": "お飲み物",
-      "nameEn": "Drinks",
+      "id": "drink-sangria",
+      "name": "オリジナルサングリア",
+      "nameEn": "Sangria",
+      "accent": "#a73d3d",
+      "items": [
+        {
+          "id": "sg-house",
+          "name": "自家製サングリア",
+          "description": "ロック・ソーダ",
+          "price": 680,
+          "badges": [
+            "自家製"
+          ]
+        },
+        {
+          "id": "sg-cooler",
+          "name": "サングリアクーラー",
+          "description": "サングリア＋オレンジジュース",
+          "price": 600
+        }
+      ]
+    },
+    {
+      "id": "drink-highball",
+      "name": "ハイボール",
+      "nameEn": "Highball",
       "accent": "#9a7eb4",
       "items": [
         {
-          "id": "dri-001",
-          "name": "生ビール（中）",
-          "price": 680,
-          "description": "プレミアムモルツ"
+          "id": "hb-lemon",
+          "name": "レモンハイボール",
+          "description": "生レモンをまるごと使った",
+          "price": 600
         },
         {
-          "id": "dri-002",
-          "name": "日本酒 飲み比べ三種",
-          "price": 1480,
-          "description": "本日のおすすめを少しずつ",
-          "image": "https://images.unsplash.com/photo-1592812812413-6a8e9d5fc8b1?w=1600&q=80",
-          "badges": ["おすすめ"]
+          "id": "hb-ginger",
+          "name": "ジンジャーハイボール",
+          "price": 550
         },
         {
-          "id": "dri-003",
-          "name": "焼酎（芋・麦）",
-          "price": 580,
-          "description": "ロック / 水割り / お湯割り"
+          "id": "hb-supersoda",
+          "name": "超炭酸ハイボール",
+          "price": 550
         },
         {
-          "id": "dri-004",
-          "name": "梅酒ソーダ",
-          "price": 680,
-          "description": "自家製梅酒"
+          "id": "hb-calpis",
+          "name": "カルピスハイボール",
+          "price": 550
         },
         {
-          "id": "dri-005",
-          "name": "煎茶",
-          "price": 380,
-          "description": "静岡産深蒸し茶"
+          "id": "hb-coke",
+          "name": "コークハイボール",
+          "price": 550
+        },
+        {
+          "id": "hb-sudachi",
+          "name": "すだちハイボール",
+          "price": 550
+        }
+      ]
+    },
+    {
+      "id": "drink-non-alc",
+      "name": "ノンアルコール・ソフト",
+      "nameEn": "Non-Alcoholic",
+      "accent": "#88aabb",
+      "items": [
+        {
+          "id": "na-nonalc-beer",
+          "name": "ノンアルコールビール",
+          "price": 500
+        },
+        {
+          "id": "na-nonalc-ume",
+          "name": "ノンアル梅酒",
+          "price": 500
+        },
+        {
+          "id": "na-oolong",
+          "name": "ウーロン茶",
+          "price": 400
+        },
+        {
+          "id": "na-green",
+          "name": "緑茶",
+          "price": 400
+        },
+        {
+          "id": "na-cola",
+          "name": "コーラ",
+          "price": 400
+        },
+        {
+          "id": "na-orange",
+          "name": "オレンジ",
+          "price": 400
+        },
+        {
+          "id": "na-calpis",
+          "name": "カルピス",
+          "price": 400
+        },
+        {
+          "id": "na-sudachi",
+          "name": "すだちソーダ",
+          "price": 400
+        },
+        {
+          "id": "na-ginger",
+          "name": "ジンジャエール",
+          "price": 400
+        },
+        {
+          "id": "na-yuzu",
+          "name": "ゆずソーダ",
+          "price": 400
         }
       ]
     }

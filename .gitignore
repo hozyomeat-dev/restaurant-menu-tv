@@ -6,3 +6,18 @@ out
 .vercel
 *.tsbuildinfo
 next-env.d.ts
+
+# incoming/ は素材投入用ローカルフォルダ。リポジトリには含めない。
+# README.md / .gitkeep のみ追跡してフォルダ構造を保つ。
+incoming/**
+!incoming/README.md
+!incoming/images/
+!incoming/images/README.md
+!incoming/images/_uncategorized/
+!incoming/images/_uncategorized/.gitkeep
+!incoming/pdfs/
+!incoming/pdfs/README.md
+!incoming/pdfs/.gitkeep
+
+# 取り込みレポートはローカルでのみ生成
+incoming/IMPORT_REPORT.md
