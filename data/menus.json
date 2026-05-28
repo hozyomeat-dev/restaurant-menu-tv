@@ -55,7 +55,8 @@
           "price": 3480,
           "badges": [
             "看板"
-          ]
+          ],
+          "image": "/menu-images/meat-platter/3%E7%A8%AE%E7%9B%9B%E3%82%8A.jpg"
         },
         {
           "id": "platter-5",
@@ -66,7 +67,8 @@
           "badges": [
             "看板",
             "人気"
-          ]
+          ],
+          "image": "/menu-images/meat-platter/5%E7%A8%AE%E7%9B%9B%E3%82%8A.jpg"
         },
         {
           "id": "platter-8",
@@ -106,7 +108,8 @@
           "price": 2480,
           "badges": [
             "100gあたり"
-          ]
+          ],
+          "image": "/menu-images/meat-premium/%E7%89%B9%E8%A3%BD%E3%82%A2%E3%83%AD%E3%82%BC%E7%89%9B%E3%82%B9%E3%83%86%E3%83%BC%E3%82%AD.jpg"
         },
         {
           "id": "prem-katsu-s",
@@ -122,13 +125,15 @@
           "price": 1980,
           "badges": [
             "大満足"
-          ]
+          ],
+          "image": "/menu-images/meat-premium/%E6%A5%B5%E4%B8%8A%E8%B5%A4%E8%BA%AB%E7%89%9B%E3%82%AB%E3%83%84%20(120g).jpg"
         },
         {
           "id": "prem-tataki",
           "name": "専門店の特製赤身たたき",
           "description": "赤身の旨味をギュッと閉じ込めた、専門店自慢の特製和牛たたき",
-          "price": 1680
+          "price": 1680,
+          "image": "/menu-images/meat-premium/%E5%B0%82%E9%96%80%E5%BA%97%E3%81%AE%E7%89%B9%E8%A3%BD%E8%B5%A4%E8%BA%AB%E3%81%9F%E3%81%9F%E3%81%8D.jpg"
         },
         {
           "id": "prem-roastbeef",
@@ -146,7 +151,8 @@
           "id": "prem-croquette",
           "name": "MEATDAYコロッケ",
           "description": "ほくほくじゃがいもに肉の旨味を閉じ込めた、MEATDAY特製コロッケ",
-          "price": 680
+          "price": 680,
+          "image": "/menu-images/meat-premium/MEATDAY%E3%82%B3%E3%83%AD%E3%83%83%E3%82%B1.jpg"
         },
         {
           "id": "prem-tebasaki",
@@ -224,13 +230,15 @@
           "id": "ip-salad-5",
           "name": "5種のサラダ",
           "description": "新鮮野菜の彩り豊かなサラダ",
-          "price": 880
+          "price": 880,
+          "image": "/menu-images/ippin/5%E7%A8%AE%E3%81%AE%E3%82%B5%E3%83%A9%E3%83%80.jpg"
         },
         {
           "id": "ip-caesar",
           "name": "シーザーサラダ",
           "description": "当店自慢のドレッシングたっぷり",
-          "price": 980
+          "price": 980,
+          "image": "/menu-images/ippin/%E3%82%B7%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%B5%E3%83%A9%E3%83%80.jpg"
         },
         {
           "id": "ip-potatosalad",
@@ -279,13 +287,15 @@
           "id": "ip-cheesetomato",
           "name": "エビとホタテのチーズトマト",
           "description": "海の旨みとコクがとけあう、やみつきの一皿",
-          "price": 1180
+          "price": 1180,
+          "image": "/menu-images/ippin/%E3%82%A8%E3%83%93%E3%81%A8%E3%83%9B%E3%82%BF%E3%83%86%E3%81%AE%E3%83%81%E3%83%BC%E3%82%BA%E3%83%88%E3%83%9E%E3%83%88.jpg"
         },
         {
           "id": "ip-butaershoyu",
           "name": "イカとエビのバター醤油",
           "description": "バター醤油をしっかり効かした鉄板メニュー",
-          "price": 980
+          "price": 980,
+          "image": "/menu-images/ippin/%E3%82%A4%E3%82%AB%E3%81%A8%E3%82%A8%E3%83%93%E3%81%AE%E3%83%90%E3%82%BF%E3%83%BC%E9%86%A4%E6%B2%B9.jpg"
         },
         {
           "id": "ip-unipotato",
@@ -430,7 +440,8 @@
           "id": "sour-sudachi",
           "name": "ど田舎すだちサワー",
           "description": "徳島のすだちをたっぷり",
-          "price": 550
+          "price": 550,
+          "image": "/menu-images/drink-sour/%E3%81%A9%E7%94%B0%E8%88%8E%E3%81%99%E3%81%A0%E3%81%A1%E3%82%B5%E3%83%AF%E3%83%BC.jpg"
         },
         {
           "id": "sour-plain",
@@ -692,7 +703,8 @@
         {
           "id": "ck-cassis",
           "name": "カシスウーロン",
-          "price": 500
+          "price": 500,
+          "image": "/menu-images/drink-cocktail/%E3%82%AB%E3%82%B7%E3%82%B9%E3%82%A6%E3%83%BC%E3%83%AD%E3%83%B3.jpg"
         }
       ]
     },
@@ -792,7 +804,8 @@
         {
           "id": "na-orange",
           "name": "オレンジ",
-          "price": 400
+          "price": 400,
+          "image": "/menu-images/drink-non-alc/%E3%82%AA%E3%83%AC%E3%83%B3%E3%82%B8.jpg"
         },
         {
           "id": "na-calpis",
