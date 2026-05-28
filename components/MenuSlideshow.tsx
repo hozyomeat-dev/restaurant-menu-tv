@@ -94,111 +94,118 @@ function StorySlide({ slide: { story } }: { slide: Extract<Slide, { kind: "story
   return (
     <div
       key={story.id}
-      className="relative grid h-full w-full animate-fadeIn grid-cols-12 gap-[3vw]"
+      className="relative h-full w-full animate-fadeIn overflow-hidden rounded-[1vw]"
     >
-      {/* Left: text */}
-      <div className="col-span-7 flex flex-col justify-between py-[2vh]">
-        <div>
-          <div className="mb-[2.5vh] flex items-center gap-[1.5vw]">
-            <span
-              className="font-display text-[1.4vw] uppercase tracking-[0.4em]"
-              style={{ color: accent }}
-            >
-              Story
-            </span>
-            <span
-              className="h-[2px] flex-1 max-w-[6vw]"
-              style={{ background: accent, opacity: 0.6 }}
-            />
-            {story.badge && (
-              <span
-                className="rounded-full border px-[1.2vw] py-[0.4vh] text-[1vw] font-medium"
-                style={{ borderColor: accent, color: accent }}
-              >
-                {story.badge}
-              </span>
-            )}
-          </div>
+      {/* Full-bleed background */}
+      {hasImage ? (
+        <div className="absolute inset-0 animate-kenBurns">
+          <Image
+            src={story.image!}
+            alt={story.title}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+      ) : (
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `radial-gradient(ellipse at 30% 20%, ${accent}50, transparent 60%), radial-gradient(ellipse at 80% 80%, ${accent}25, transparent 65%), #0b0a08`,
+          }}
+        />
+      )}
 
-          <h2
-            className="font-display text-[7vw] font-bold leading-[1.0]"
+      {/* Readability gradient: strong dark at left/bottom, fade to right/top */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(115deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.72) 38%, rgba(0,0,0,0.42) 65%, rgba(0,0,0,0.25) 100%)",
+        }}
+      />
+      {/* Accent tint at bottom */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `linear-gradient(to top, ${accent}33 0%, transparent 40%)`,
+        }}
+      />
+
+      {/* Content */}
+      <div className="relative z-10 flex h-full w-full flex-col justify-between p-[4vw]">
+        {/* Top bar */}
+        <div className="flex items-center gap-[1.5vw]">
+          <span
+            className="font-display text-[1.6vw] font-bold uppercase tracking-[0.5em]"
             style={{ color: accent }}
           >
-            {story.title}
-          </h2>
+            Producer Story
+          </span>
+          <span
+            className="h-[3px] w-[10vw]"
+            style={{ background: accent, opacity: 0.7 }}
+          />
+          {story.badge && (
+            <span
+              className="rounded-full px-[1.6vw] py-[0.8vh] text-[1.3vw] font-bold"
+              style={{
+                background: accent,
+                color: "#0b0a08",
+                boxShadow: `0 0 30px ${accent}66`,
+              }}
+            >
+              {story.badge}
+            </span>
+          )}
+        </div>
+
+        {/* Middle: Title + Subtitle + Lead */}
+        <div className="-mt-[4vh]">
           {story.subtitle && (
-            <p className="mt-[1.2vh] font-display text-[1.5vw] tracking-wider text-muted">
+            <p
+              className="font-display text-[1.7vw] font-bold uppercase tracking-[0.45em]"
+              style={{ color: accent, opacity: 0.95 }}
+            >
               {story.subtitle}
             </p>
           )}
+          <h2
+            className="mt-[0.5vh] font-display text-[14vw] font-black leading-[0.9] text-ink"
+            style={{
+              textShadow: `0 6px 40px rgba(0,0,0,0.9), 0 0 80px ${accent}55`,
+              letterSpacing: "-0.02em",
+            }}
+          >
+            {story.title}
+          </h2>
 
           {story.lead && (
             <p
-              className="mt-[3vh] font-display text-[2.4vw] font-medium leading-[1.4] text-ink"
-              style={{ textShadow: `0 0 30px ${accent}33` }}
+              className="mt-[4vh] max-w-[68vw] whitespace-pre-line font-display text-[4.2vw] font-bold leading-[1.25] text-ink"
+              style={{
+                textShadow: "0 4px 24px rgba(0,0,0,0.95)",
+              }}
             >
               {story.lead}
             </p>
           )}
-
-          {story.body && (
-            <div className="mt-[3vh] max-w-[42vw] space-y-[1.2vh]">
-              {story.body.split(/\n\n+/).map((p, i) => (
-                <p
-                  key={i}
-                  className="text-[1.5vw] leading-[1.7] text-ink/85"
-                >
-                  {p}
-                </p>
-              ))}
-            </div>
-          )}
         </div>
 
-        <p className="text-[1vw] uppercase tracking-[0.3em] text-muted">— 産地から、テーブルまで —</p>
-      </div>
-
-      {/* Right: decorative panel / optional image */}
-      <div className="relative col-span-5 overflow-hidden rounded-[1.5vw]">
-        {hasImage ? (
-          <div className="relative h-full w-full animate-kenBurns">
-            <Image
-              src={story.image!}
-              alt={story.title}
-              fill
-              priority
-              sizes="50vw"
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-tr from-bg/70 via-transparent to-transparent" />
-          </div>
-        ) : (
-          <div
-            className="relative flex h-full w-full items-center justify-center"
-            style={{
-              background: `radial-gradient(ellipse at 30% 30%, ${accent}40, transparent 70%), radial-gradient(ellipse at 70% 70%, ${accent}20, transparent 70%), #110f0c`,
-            }}
-          >
-            <div
-              className="absolute inset-[8%] rounded-[1vw] border opacity-30"
-              style={{ borderColor: accent }}
-            />
-            <div className="text-center">
-              <p
-                className="font-display text-[10vw] font-bold leading-none opacity-15"
-                style={{ color: accent }}
-              >
-                {story.title.slice(0, 1)}
-              </p>
-              <p
-                className="mt-[2vh] text-[1vw] uppercase tracking-[0.5em]"
-                style={{ color: accent, opacity: 0.7 }}
-              >
-                {story.badge ?? "Producer Story"}
-              </p>
-            </div>
-          </div>
-        )}
+        {/* Bottom: Body */}
+        <div>
+          {story.body && (
+            <p
+              className="max-w-[80vw] whitespace-pre-line text-[2.4vw] font-medium leading-[1.55] text-ink/95"
+              style={{
+                textShadow: "0 3px 18px rgba(0,0,0,0.95)",
+              }}
+            >
+              {story.body}
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );

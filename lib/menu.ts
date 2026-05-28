@@ -31,6 +31,9 @@ export type Story = {
   /** Insert this story right before the slide with this category id or item id.
    *  If unset, falls back to display.storyEveryNSlides round-robin. */
   insertBefore?: string;
+  /** Always prepend this story at the very start of the slideshow. Stories
+   *  with showAtStart appear in `stories` array order before any menu slides. */
+  showAtStart?: boolean;
 };
 
 export type MenuData = {
@@ -77,17 +80,23 @@ export function buildSlides(menu: MenuData): Slide[] {
   const stories = menu.stories ?? [];
   if (stories.length === 0) return base;
 
-  // Phase 2a: place stories with `insertBefore` at the matching slide.
+  // Phase 2a: prepend stories flagged showAtStart, in stories[] order.
+  const startStories = stories.filter((s) => s.showAtStart);
+  const startSlides: Slide[] = startStories.map((story) => ({ kind: "story", story }));
+  const result: Slide[] = [...startSlides, ...base];
+
+  // Phase 2b: place stories with `insertBefore` at the matching slide.
   // Walk back-to-front so earlier insertions don't shift later target indices.
   const anchored = stories.filter((s) => s.insertBefore);
-  const free = stories.filter((s) => !s.insertBefore);
-  const result: Slide[] = [...base];
+  const free = stories.filter((s) => !s.insertBefore && !s.showAtStart);
 
+  // Skip the prepended startSlides region when searching for anchor targets.
+  const searchStart = startSlides.length;
   const anchorPositions = anchored
     .map((story) => {
       const target = story.insertBefore!;
       let idx = -1;
-      for (let i = 0; i < result.length; i++) {
+      for (let i = searchStart; i < result.length; i++) {
         const s = result[i];
         if (s.kind === "intro" && s.category.id === target) {
           idx = i;
