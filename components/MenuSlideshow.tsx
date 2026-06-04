@@ -66,12 +66,12 @@ function BurnGuardFrame({ children }: { children: React.ReactNode }) {
 
 function Header({ restaurant }: { restaurant: MenuData["restaurant"] }) {
   return (
-    <header className="flex items-baseline justify-between pb-[2.5vh]">
-      <h1 className="font-display text-[3.2vw] font-bold tracking-wide text-ink">
+    <header className="flex items-baseline justify-between gap-[2vw] pb-[2.5vh]">
+      <h1 className="font-display text-[2.6vw] font-bold tracking-wide text-ink whitespace-nowrap">
         {restaurant.name}
       </h1>
       {restaurant.tagline && (
-        <p className="text-[1.4vw] text-muted">{restaurant.tagline}</p>
+        <p className="truncate text-right text-[1.1vw] text-muted">{restaurant.tagline}</p>
       )}
     </header>
   );
@@ -180,7 +180,7 @@ function StorySlide({ slide: { story } }: { slide: Extract<Slide, { kind: "story
 
           {story.lead && (
             <p
-              className="mt-[3.5vh] max-w-[68vw] whitespace-pre-line font-display text-[4.2vw] font-bold leading-[1.25] text-ink"
+              className="jp-wrap mt-[3.5vh] max-w-[68vw] whitespace-pre-line font-display text-[3.6vw] font-bold leading-[1.3] text-ink"
               style={{
                 textShadow: "0 4px 24px rgba(0,0,0,0.95)",
               }}
@@ -194,7 +194,7 @@ function StorySlide({ slide: { story } }: { slide: Extract<Slide, { kind: "story
         <div>
           {story.body && (
             <p
-              className="max-w-[80vw] whitespace-pre-line text-[2.4vw] font-medium leading-[1.55] text-ink/95"
+              className="jp-wrap max-w-[78vw] whitespace-pre-line text-[2vw] font-medium leading-[1.6] text-ink/95"
               style={{
                 textShadow: "0 3px 18px rgba(0,0,0,0.95)",
               }}
@@ -266,15 +266,15 @@ function ItemSlide({
             </span>
           </div>
 
-          <h2 className="font-display text-[5.6vw] font-bold leading-[1.05] text-ink">
+          <h2 className="jp-wrap font-display text-[4.4vw] font-bold leading-[1.1] text-ink">
             {item.name}
           </h2>
           {item.nameEn && (
-            <p className="mt-[1vh] text-[1.6vw] text-muted">{item.nameEn}</p>
+            <p className="mt-[1vh] text-[1.5vw] text-muted">{item.nameEn}</p>
           )}
 
           {item.description && (
-            <p className="mt-[3.5vh] max-w-[40vw] text-[1.8vw] leading-relaxed text-ink/90">
+            <p className="jp-wrap mt-[3vh] max-w-[42vw] text-[1.6vw] leading-[1.65] text-ink/90">
               {item.description}
             </p>
           )}
@@ -385,12 +385,12 @@ function WineSlide({
             )}
           </div>
 
-          <h2 className="font-display text-[4.4vw] font-bold leading-[1.1] text-ink">
+          <h2 className="jp-wrap font-display text-[3.4vw] font-bold leading-[1.15] text-ink">
             {item.name}
           </h2>
 
           {item.notes && (
-            <p className="mt-[3vh] max-w-[44vw] text-[1.7vw] font-medium leading-[1.7] text-ink/90">
+            <p className="jp-wrap mt-[2.5vh] max-w-[46vw] text-[1.4vw] font-medium leading-[1.6] text-ink/90">
               {item.notes}
             </p>
           )}
@@ -410,11 +410,11 @@ function WineSlide({
         </div>
 
         <div className="flex items-baseline gap-[1vw]">
-          <span className="font-display text-[2vw] text-muted">{currency}</span>
-          <span className="font-display text-[5.6vw] font-bold leading-none text-accent">
+          <span className="font-display text-[1.8vw] text-muted">{currency}</span>
+          <span className="font-display text-[4.6vw] font-bold leading-none text-accent">
             {item.price.toLocaleString("ja-JP")}
           </span>
-          <span className="text-[1.2vw] text-muted">税込 / ボトル</span>
+          <span className="text-[1.1vw] text-muted">税込 / ボトル</span>
         </div>
       </div>
 
@@ -450,12 +450,12 @@ function WineSlide({
                 className="flex items-baseline gap-[1.2vw]"
               >
                 <span
-                  className="font-display text-[1.6vw] font-bold leading-none"
+                  className="font-display text-[1.4vw] font-bold leading-none"
                   style={{ color: category.accent ?? "#e8b14a" }}
                 >
                   0{i + 1}
                 </span>
-                <span className="font-display text-[2.8vw] font-bold leading-[1.15] text-ink">
+                <span className="jp-wrap font-display text-[2.4vw] font-bold leading-[1.2] text-ink">
                   {p}
                 </span>
               </li>

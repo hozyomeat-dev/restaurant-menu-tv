@@ -37,3 +37,15 @@ body {
 * {
   cursor: none !important;
 }
+
+/* Japanese-aware line breaking for big titles.
+   line-break: strict — applies stricter JIS rules (keeps small kana with
+   previous char, avoids breaking before 、。] etc.)
+   text-wrap: pretty — Chrome/Edge balance multi-line wrapping to avoid
+   short orphan lines. Safe to fall back silently on older browsers. */
+.jp-wrap {
+  line-break: strict;
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
