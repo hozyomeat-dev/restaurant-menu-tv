@@ -33,9 +33,17 @@ body {
   animation: slowDrift 30s ease-in-out infinite;
 }
 
-/* Hide cursor on TV */
+/* Hide cursor by default for TV / kiosk feel.
+   Interactive elements still get the pointer so click targets are visible
+   when a mouse is connected (dev preview, prep on laptop, etc.). */
 * {
-  cursor: none !important;
+  cursor: none;
+}
+button,
+a,
+[role="button"],
+[onclick] {
+  cursor: pointer;
 }
 
 /* Japanese-aware line breaking for big titles.

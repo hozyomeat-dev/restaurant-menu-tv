@@ -10,6 +10,7 @@ type Props = { menu: MenuData };
 export default function MenuSlideshow({ menu }: Props) {
   const slides = useMemo(() => buildSlides(menu), [menu]);
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const current = slides[index];
@@ -25,14 +26,79 @@ export default function MenuSlideshow({ menu }: Props) {
             : menu.display.slideDurationMs;
 
   useEffect(() => {
-    if (slides.length === 0) return;
+    if (slides.length === 0 || paused) return;
     timerRef.current = setTimeout(() => {
       setIndex((i) => (i + 1) % slides.length);
     }, duration);
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
     };
-  }, [index, duration, slides.length]);
+  }, [index, duration, slides.length, paused]);
+
+  // Group categories for footer / shortcut jumps (computed once per slide list).
+  const groups = useMemo(() => {
+    const m = new Map<string, { name: string; accent?: string; firstIndex: number }>();
+    slides.forEach((s, i) => {
+      if (s.kind === "story") {
+        if (!m.has("_story")) m.set("_story", { name: "ストーリー", accent: s.story.accent, firstIndex: i });
+      } else if (s.kind === "featured-teaser") {
+        // Don't add teaser to nav — its anchor is the next item.
+      } else {
+        const cat = s.category;
+        if (!m.has(cat.id)) m.set(cat.id, { name: cat.name, accent: cat.accent, firstIndex: i });
+      }
+    });
+    return Array.from(m.entries());
+  }, [slides]);
+
+  // Keyboard / remote shortcuts.
+  useEffect(() => {
+    if (slides.length === 0) return;
+    const onKey = (e: KeyboardEvent) => {
+      switch (e.key) {
+        case "ArrowRight":
+        case "PageDown":
+        case "Enter":
+          e.preventDefault();
+          setIndex((i) => (i + 1) % slides.length);
+          break;
+        case "ArrowLeft":
+        case "PageUp":
+          e.preventDefault();
+          setIndex((i) => (i - 1 + slides.length) % slides.length);
+          break;
+        case " ":
+        case "p":
+        case "P":
+          e.preventDefault();
+          setPaused((p) => !p);
+          break;
+        case "Home":
+          e.preventDefault();
+          setIndex(0);
+          break;
+        case "End":
+          e.preventDefault();
+          setIndex(slides.length - 1);
+          break;
+        default:
+          // Number keys 1..9 jump to the Nth group's first slide.
+          if (/^[1-9]$/.test(e.key)) {
+            const n = parseInt(e.key, 10) - 1;
+            if (n < groups.length) {
+              e.preventDefault();
+              setIndex(groups[n][1].firstIndex);
+            }
+          }
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [slides.length, groups]);
+
+  const jumpTo = (i: number) => {
+    setIndex(i);
+  };
 
   if (slides.length === 0) {
     return (
@@ -56,6 +122,10 @@ export default function MenuSlideshow({ menu }: Props) {
           index={index}
           durationMs={duration}
           restaurant={menu.restaurant}
+          groups={groups}
+          paused={paused}
+          onJump={jumpTo}
+          onTogglePause={() => setPaused((p) => !p)}
         />
       </BurnGuardFrame>
     </div>
@@ -569,62 +639,76 @@ function Footer({
   slides,
   index,
   durationMs,
-  restaurant,
+  groups,
+  paused,
+  onJump,
+  onTogglePause,
 }: {
   slides: Slide[];
   index: number;
   durationMs: number;
   restaurant: MenuData["restaurant"];
+  groups: [string, { name: string; accent?: string; firstIndex: number }][];
+  paused: boolean;
+  onJump: (i: number) => void;
+  onTogglePause: () => void;
 }) {
   const current = slides[index];
   const categoryId =
-    current.kind === "story" ? "_story" : current.category.id;
-
-  // Group slide indices by category for nav dots (stories appear as their own group)
-  const groups = useMemo(() => {
-    const map = new Map<string, { name: string; accent?: string; count: number; firstIndex: number }>();
-    slides.forEach((s, i) => {
-      if (s.kind === "story") {
-        const cur = map.get("_story");
-        if (cur) cur.count += 1;
-        else map.set("_story", { name: "ストーリー", accent: s.story.accent, count: 1, firstIndex: i });
-      } else {
-        const cat = s.category;
-        const cur = map.get(cat.id);
-        if (cur) cur.count += 1;
-        else map.set(cat.id, { name: cat.name, accent: cat.accent, count: 1, firstIndex: i });
-      }
-    });
-    return Array.from(map.entries());
-  }, [slides]);
+    current.kind === "story"
+      ? "_story"
+      : current.kind === "featured-teaser"
+        ? current.category.id
+        : current.category.id;
 
   return (
     <footer className="pt-[2.5vh]">
       <div className="relative h-[3px] w-full overflow-hidden rounded-full bg-ink/10">
         <div
-          key={index}
-          className="h-full origin-left animate-progress bg-accent"
-          style={{ animationDuration: `${durationMs}ms` }}
+          key={`${index}-${paused ? "p" : "r"}`}
+          className="h-full origin-left bg-accent"
+          style={{
+            animation: paused ? "none" : `progress ${durationMs}ms linear both`,
+            transform: paused ? "scaleX(0.4)" : undefined,
+            opacity: paused ? 0.4 : 1,
+          }}
         />
       </div>
 
       <div className="mt-[2vh] flex items-center justify-between text-[1vw] text-muted">
-        <div className="flex items-center gap-[1.5vw]">
-          {groups.map(([id, g]) => (
-            <div key={id} className="flex items-center gap-[0.6vw]">
-              <span
-                className="block h-[8px] w-[8px] rounded-full transition-opacity"
-                style={{
-                  background: g.accent ?? "#a59682",
-                  opacity: id === categoryId ? 1 : 0.25,
-                }}
-              />
-              <span style={{ opacity: id === categoryId ? 1 : 0.5 }}>{g.name}</span>
-            </div>
-          ))}
+        <div className="flex flex-wrap items-center gap-[1vw]">
+          {groups.map(([id, g], gi) => {
+            const active = id === categoryId;
+            return (
+              <button
+                key={id}
+                onClick={() => onJump(g.firstIndex)}
+                className="group flex items-center gap-[0.5vw] rounded-md px-[0.5vw] py-[0.3vh] outline-none transition-colors hover:bg-ink/5 focus:bg-ink/10"
+                title={`${g.name} (キー: ${gi + 1})`}
+              >
+                <span
+                  className="block h-[10px] w-[10px] rounded-full transition-all"
+                  style={{
+                    background: g.accent ?? "#a59682",
+                    opacity: active ? 1 : 0.3,
+                    transform: active ? "scale(1.3)" : undefined,
+                  }}
+                />
+                <span style={{ opacity: active ? 1 : 0.5 }}>{g.name}</span>
+              </button>
+            );
+          })}
         </div>
-        <div className="tabular-nums">
-          {index + 1} / {slides.length}
+        <div className="flex items-center gap-[1.2vw] tabular-nums">
+          <button
+            onClick={onTogglePause}
+            className="rounded-md px-[0.8vw] py-[0.3vh] transition-colors hover:bg-ink/10"
+            title="Pause / Resume (Space)"
+            style={{ opacity: paused ? 1 : 0.55 }}
+          >
+            {paused ? "⏸ Paused" : "▸ Play"}
+          </button>
+          <span>{index + 1} / {slides.length}</span>
         </div>
       </div>
     </footer>
