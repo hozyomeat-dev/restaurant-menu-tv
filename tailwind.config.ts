@@ -49,6 +49,10 @@ export default {
           "0%, 100%": { boxShadow: "0 0 30px var(--tw-shadow-color), 0 0 60px var(--tw-shadow-color)" },
           "50%": { boxShadow: "0 0 60px var(--tw-shadow-color), 0 0 120px var(--tw-shadow-color)" },
         },
+        rainbow: {
+          "0%": { backgroundPosition: "0% 50%" },
+          "100%": { backgroundPosition: "300% 50%" },
+        },
       },
       animation: {
         fadeIn: "fadeIn 700ms ease-out both",
@@ -59,6 +63,7 @@ export default {
         teaserSlideUp: "teaserSlideUp 700ms ease-out 600ms both",
         teaserSlideUpLate: "teaserSlideUp 700ms ease-out 1200ms both",
         teaserShine: "teaserShine 2.5s ease-in-out 800ms both",
+        rainbow: "rainbow 4s linear infinite",
       },
     },
   },

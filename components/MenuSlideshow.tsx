@@ -114,43 +114,32 @@ function FeaturedTeaserSlide({ slide: { category, item } }: { slide: Extract<Sli
       />
 
       <div className="relative z-10 flex h-full w-full flex-col items-center justify-center p-[4vw] text-center">
-        {/* 📺 large emoji at top */}
-        <div className="animate-teaserPop text-[8vw] leading-none">📺</div>
-
-        {/* 「画面限定」huge text */}
+        {/* 「画面限定」huge rainbow text */}
         <h2
-          className="animate-teaserPop jp-wrap font-display text-[14vw] font-black leading-[0.85] text-ink"
+          className="rainbow-text animate-teaserPop animate-rainbow jp-wrap font-display text-[16vw] font-black leading-[0.85]"
           style={{
-            color: accent,
-            textShadow: `0 0 60px ${accent}cc, 0 0 120px ${accent}66`,
             letterSpacing: "-0.02em",
-            animationDelay: "200ms",
           }}
         >
           画面限定
         </h2>
 
-        {/* Subtle MENU label */}
-        <div className="animate-teaserSlideUp mt-[2vh] flex items-center gap-[2vw]">
+        {/* MENU label */}
+        <div className="animate-teaserSlideUp mt-[3vh] flex items-center gap-[2vw]">
           <span
-            className="h-[3px] w-[8vw]"
-            style={{ background: accent, opacity: 0.6 }}
+            className="rainbow-fill animate-rainbow h-[4px] w-[12vw] rounded-full"
           />
-          <span
-            className="font-display text-[3.2vw] font-bold uppercase tracking-[0.5em]"
-            style={{ color: accent }}
-          >
+          <span className="rainbow-text animate-rainbow font-display text-[3.6vw] font-black uppercase tracking-[0.5em]">
             Menu
           </span>
           <span
-            className="h-[3px] w-[8vw]"
-            style={{ background: accent, opacity: 0.6 }}
+            className="rainbow-fill animate-rainbow h-[4px] w-[12vw] rounded-full"
           />
         </div>
 
         {/* Item name preview */}
         <p
-          className="animate-teaserSlideUpLate jp-wrap mt-[4vh] font-display text-[4.8vw] font-bold text-ink"
+          className="animate-teaserSlideUpLate jp-wrap mt-[5vh] font-display text-[5.4vw] font-bold text-ink"
           style={{ textShadow: "0 4px 24px rgba(0,0,0,0.9)" }}
         >
           {item.name}
@@ -371,16 +360,14 @@ function ItemSlide({
           {item.badges && item.badges.length > 0 && (
             <div className="mt-[3vh] flex flex-wrap items-center gap-[0.8vw]">
               {item.badges.map((b) => {
-                const featured = /限定|🔥|📺|🌟|⭐/.test(b);
+                const featured = /限定/.test(b);
                 if (featured) {
                   return (
                     <span
                       key={b}
-                      className="rounded-full px-[1.8vw] py-[0.9vh] text-[1.4vw] font-bold tracking-wider animate-pulse"
+                      className="rainbow-fill animate-rainbow rounded-full px-[2vw] py-[1vh] text-[1.5vw] font-black tracking-wider text-bg"
                       style={{
-                        background: category.accent ?? "#e8b14a",
-                        color: "#0b0a08",
-                        boxShadow: `0 0 30px ${category.accent ?? "#e8b14a"}99, 0 0 60px ${category.accent ?? "#e8b14a"}44`,
+                        boxShadow: "0 0 30px rgba(255,200,80,0.55), 0 0 60px rgba(255,100,180,0.35)",
                       }}
                     >
                       {b}
@@ -533,7 +520,10 @@ function WineSlide({
         {/* "合わせるおすすめ" section */}
         <div className="mt-[3vh] flex-1">
           <div className="mb-[1.5vh] flex items-baseline gap-[1vw]">
-            <span className="text-[2vw]" style={{ color: accent }}>♥</span>
+            <span
+              className="h-[2px] w-[2.5vw] self-center"
+              style={{ background: accent }}
+            />
             <span
               className="font-display text-[2vw] font-bold tracking-[0.05em]"
               style={{ color: accent }}

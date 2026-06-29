@@ -49,3 +49,38 @@ body {
   overflow-wrap: anywhere;
   word-break: normal;
 }
+
+/* Pachinko-style rainbow text — flowing hue cycle.
+   Applies a high-saturation rainbow gradient as the text fill, with a
+   secondary glow via filter drop-shadow so it pops against dark BGs. */
+.rainbow-text {
+  background-image: linear-gradient(
+    90deg,
+    #ff3b6b,   /* magenta-red */
+    #ff8a3d,   /* orange */
+    #ffe23b,   /* yellow */
+    #5dff8a,   /* lime */
+    #3dd4ff,   /* cyan */
+    #6e7bff,   /* indigo */
+    #c45dff,   /* purple */
+    #ff3b6b    /* back to start for seamless loop */
+  );
+  background-size: 300% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter:
+    drop-shadow(0 0 18px rgba(255, 200, 80, 0.55))
+    drop-shadow(0 0 50px rgba(255, 100, 180, 0.35));
+}
+
+/* Solid-fill rainbow chip (for badges) — same gradient, painted as bg. */
+.rainbow-fill {
+  background-image: linear-gradient(
+    90deg,
+    #ff3b6b, #ff8a3d, #ffe23b, #5dff8a, #3dd4ff, #6e7bff, #c45dff, #ff3b6b
+  );
+  background-size: 300% 100%;
+  background-position: 0% 50%;
+}

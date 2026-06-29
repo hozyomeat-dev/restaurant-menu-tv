@@ -70,10 +70,10 @@ export type Slide =
   | { kind: "story"; story: Story }
   | { kind: "featured-teaser"; category: MenuCategory; item: MenuItem };
 
-/** True if any badge contains a limited/featured marker (限定 / 🔥 / 📺 / 🌟 / ⭐). */
+/** True if any badge contains 「限定」 (featured / limited menu marker). */
 export function isFeatured(item: MenuItem): boolean {
   if (!item.badges || item.badges.length === 0) return false;
-  return item.badges.some((b) => /限定|🔥|📺|🌟|⭐/.test(b));
+  return item.badges.some((b) => b.includes("限定"));
 }
 
 export function buildSlides(menu: MenuData): Slide[] {
