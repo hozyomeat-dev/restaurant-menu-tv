@@ -280,15 +280,33 @@ function ItemSlide({
           )}
 
           {item.badges && item.badges.length > 0 && (
-            <div className="mt-[3vh] flex flex-wrap gap-[0.8vw]">
-              {item.badges.map((b) => (
-                <span
-                  key={b}
-                  className="rounded-full border border-accent/60 px-[1.4vw] py-[0.5vh] text-[1.1vw] font-medium text-accent"
-                >
-                  {b}
-                </span>
-              ))}
+            <div className="mt-[3vh] flex flex-wrap items-center gap-[0.8vw]">
+              {item.badges.map((b) => {
+                const featured = /限定|🔥|📺|🌟|⭐/.test(b);
+                if (featured) {
+                  return (
+                    <span
+                      key={b}
+                      className="rounded-full px-[1.8vw] py-[0.9vh] text-[1.4vw] font-bold tracking-wider animate-pulse"
+                      style={{
+                        background: category.accent ?? "#e8b14a",
+                        color: "#0b0a08",
+                        boxShadow: `0 0 30px ${category.accent ?? "#e8b14a"}99, 0 0 60px ${category.accent ?? "#e8b14a"}44`,
+                      }}
+                    >
+                      {b}
+                    </span>
+                  );
+                }
+                return (
+                  <span
+                    key={b}
+                    className="rounded-full border border-accent/60 px-[1.4vw] py-[0.5vh] text-[1.1vw] font-medium text-accent"
+                  >
+                    {b}
+                  </span>
+                );
+              })}
             </div>
           )}
         </div>
@@ -351,6 +369,7 @@ function WineSlide({
   currency: string;
 }) {
   const { color, pairings } = parseWineDescription(item.description);
+  const accent = category.accent ?? "#7a2d3a";
   const colorChip = color === "赤"
     ? { label: "赤 RED", bg: "#7a2d3a", text: "#ffe6dc" }
     : color === "白"
@@ -361,13 +380,13 @@ function WineSlide({
   const hasImage = Boolean(item.image);
 
   return (
-    <div className="grid h-full w-full animate-fadeIn grid-cols-12 gap-[2.5vw]">
-      {/* Bottle hero (only when an image is set) */}
+    <div className="grid h-full w-full animate-fadeIn grid-cols-12 gap-[3vw]">
+      {/* Left: bottle hero */}
       {hasImage && (
         <div
-          className="relative col-span-3 overflow-hidden rounded-[1.5vw]"
+          className="relative col-span-5 overflow-hidden rounded-[1.5vw]"
           style={{
-            background: `radial-gradient(ellipse at 50% 40%, ${(category.accent ?? "#7a2d3a")}30, transparent 70%), #1a120e`,
+            background: `radial-gradient(ellipse at 50% 40%, ${accent}30, transparent 70%), #1a120e`,
           }}
         >
           <div className="relative h-full w-full">
@@ -376,117 +395,89 @@ function WineSlide({
               alt={item.name}
               fill
               priority
-              sizes="25vw"
-              className="object-contain p-[1vw]"
-              style={{ filter: "drop-shadow(0 1vh 2vh rgba(0,0,0,0.7))" }}
+              sizes="42vw"
+              className="object-contain p-[1.5vw]"
+              style={{ filter: "drop-shadow(0 1vh 2.5vh rgba(0,0,0,0.7))" }}
             />
           </div>
         </div>
       )}
 
-      {/* Middle: wine identity + notes */}
-      <div className={`${hasImage ? "col-span-5" : "col-span-7"} flex flex-col justify-between py-[2vh]`}>
-        <div>
-          <div className="mb-[2.5vh] flex items-center gap-[1.5vw]">
+      {/* Right: name + notes + 合わせるおすすめ */}
+      <div className={`${hasImage ? "col-span-7" : "col-span-12"} flex flex-col py-[1.5vh]`}>
+        {/* Top label */}
+        <div className="mb-[2vh] flex items-center gap-[1.2vw]">
+          <span
+            className="h-[2px] w-[2.5vw]"
+            style={{ background: accent }}
+          />
+          <span
+            className="font-display text-[1.3vw] uppercase tracking-[0.3em]"
+            style={{ color: accent }}
+          >
+            Bottle Wine
+          </span>
+          {colorChip && (
             <span
-              className="h-[2px] w-[3vw]"
-              style={{ background: category.accent ?? "#7a2d3a" }}
-            />
-            <span
-              className="font-display text-[1.4vw] uppercase tracking-[0.3em]"
-              style={{ color: category.accent ?? "#7a2d3a" }}
+              className="rounded-full px-[1.2vw] py-[0.4vh] text-[1.1vw] font-bold tracking-widest"
+              style={{ background: colorChip.bg, color: colorChip.text }}
             >
-              Bottle Wine
+              {colorChip.label}
             </span>
-            {colorChip && (
-              <span
-                className="rounded-full px-[1.4vw] py-[0.5vh] text-[1.2vw] font-bold tracking-widest"
-                style={{ background: colorChip.bg, color: colorChip.text }}
-              >
-                {colorChip.label}
-              </span>
-            )}
-          </div>
-
-          <h2 className={`jp-wrap font-display font-bold leading-[1.15] text-ink ${hasImage ? "text-[2.8vw]" : "text-[3.4vw]"}`}>
-            {item.name}
-          </h2>
-
-          {item.notes && (
-            <p className={`jp-wrap mt-[2.2vh] font-medium leading-[1.6] text-ink/90 ${hasImage ? "max-w-[36vw] text-[1.25vw]" : "max-w-[46vw] text-[1.4vw]"}`}>
-              {item.notes}
-            </p>
-          )}
-
-          {item.badges && item.badges.length > 0 && (
-            <div className="mt-[2vh] flex flex-wrap gap-[0.8vw]">
-              {item.badges.map((b) => (
-                <span
-                  key={b}
-                  className="rounded-full border border-accent/60 px-[1.4vw] py-[0.5vh] text-[1.1vw] font-medium text-accent"
-                >
-                  {b}
-                </span>
-              ))}
-            </div>
           )}
         </div>
 
-        <div className="flex items-baseline gap-[1vw]">
-          <span className="font-display text-[1.6vw] text-muted">{currency}</span>
-          <span className={`font-display font-bold leading-none text-accent ${hasImage ? "text-[3.8vw]" : "text-[4.6vw]"}`}>
+        {/* Wine name */}
+        <h2 className="jp-wrap font-display text-[3vw] font-bold leading-[1.15] text-ink">
+          {item.name}
+        </h2>
+
+        {item.notes && (
+          <p className="jp-wrap mt-[1.5vh] max-w-[50vw] text-[1.15vw] font-medium leading-[1.55] text-ink/85">
+            {item.notes}
+          </p>
+        )}
+
+        {/* "合わせるおすすめ" section */}
+        <div className="mt-[3vh] flex-1">
+          <div className="mb-[1.5vh] flex items-baseline gap-[1vw]">
+            <span className="text-[2vw]" style={{ color: accent }}>♥</span>
+            <span
+              className="font-display text-[2vw] font-bold tracking-[0.05em]"
+              style={{ color: accent }}
+            >
+              合わせるおすすめ
+            </span>
+          </div>
+          {pairings.length > 0 ? (
+            <ul className="space-y-[1vh]">
+              {pairings.map((p, i) => (
+                <li key={i} className="flex items-baseline gap-[1vw]">
+                  <span
+                    className="font-display text-[1.3vw] font-bold leading-none tabular-nums"
+                    style={{ color: accent }}
+                  >
+                    0{i + 1}
+                  </span>
+                  <span className="jp-wrap font-display text-[2.2vw] font-bold leading-[1.15] text-ink">
+                    {p}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-[1.4vw] text-ink/70">スタッフへお気軽にお声掛けください。</p>
+          )}
+        </div>
+
+        {/* Price */}
+        <div className="mt-[1.5vh] flex items-baseline gap-[1vw]">
+          <span className="font-display text-[1.4vw] text-muted">{currency}</span>
+          <span className="font-display text-[3.4vw] font-bold leading-none text-accent">
             {item.price.toLocaleString("ja-JP")}
           </span>
           <span className="text-[1vw] text-muted">税込 / ボトル</span>
         </div>
-      </div>
-
-      {/* Right: pairing showcase */}
-      <div className={`relative ${hasImage ? "col-span-4" : "col-span-5"} flex flex-col justify-center overflow-hidden rounded-[1.5vw] p-[2vw]`}
-        style={{
-          background: `radial-gradient(ellipse at 20% 30%, ${(category.accent ?? "#7a2d3a")}55, transparent 65%), radial-gradient(ellipse at 80% 80%, ${(category.accent ?? "#7a2d3a")}30, transparent 65%), #110f0c`,
-        }}
-      >
-        <div className="mb-[2.5vh] flex items-center gap-[1.2vw]">
-          <span
-            className="text-[2.4vw]"
-            style={{ color: category.accent ?? "#e8b14a" }}
-          >
-            ♥
-          </span>
-          <span
-            className="font-display text-[2.4vw] font-bold uppercase tracking-[0.3em]"
-            style={{ color: category.accent ?? "#e8b14a" }}
-          >
-            Pairing
-          </span>
-        </div>
-        <p className="mb-[2vh] font-display text-[1.6vw] font-medium text-ink/80">
-          こちらと一緒に。
-        </p>
-
-        {pairings.length > 0 ? (
-          <ul className="space-y-[1.4vh]">
-            {pairings.map((p, i) => (
-              <li
-                key={i}
-                className="flex items-baseline gap-[1.2vw]"
-              >
-                <span
-                  className="font-display text-[1.3vw] font-bold leading-none"
-                  style={{ color: category.accent ?? "#e8b14a" }}
-                >
-                  0{i + 1}
-                </span>
-                <span className={`jp-wrap font-display font-bold leading-[1.2] text-ink ${hasImage ? "text-[2vw]" : "text-[2.4vw]"}`}>
-                  {p}
-                </span>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="text-[1.6vw] text-ink/70">スタッフへお気軽にお声掛けください。</p>
-        )}
       </div>
     </div>
   );
