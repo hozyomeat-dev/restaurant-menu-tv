@@ -358,11 +358,34 @@ function WineSlide({
       : color === "ロゼ"
         ? { label: "ロゼ ROSÉ", bg: "#c98aa0", text: "#3b1f29" }
         : null;
+  const hasImage = Boolean(item.image);
 
   return (
-    <div className="grid h-full w-full animate-fadeIn grid-cols-12 gap-[3vw]">
-      {/* Left: wine identity + notes */}
-      <div className="col-span-7 flex flex-col justify-between py-[2vh]">
+    <div className="grid h-full w-full animate-fadeIn grid-cols-12 gap-[2.5vw]">
+      {/* Bottle hero (only when an image is set) */}
+      {hasImage && (
+        <div
+          className="relative col-span-3 overflow-hidden rounded-[1.5vw]"
+          style={{
+            background: `radial-gradient(ellipse at 50% 40%, ${(category.accent ?? "#7a2d3a")}30, transparent 70%), #1a120e`,
+          }}
+        >
+          <div className="relative h-full w-full">
+            <Image
+              src={item.image!}
+              alt={item.name}
+              fill
+              priority
+              sizes="25vw"
+              className="object-contain p-[1vw]"
+              style={{ filter: "drop-shadow(0 1vh 2vh rgba(0,0,0,0.7))" }}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Middle: wine identity + notes */}
+      <div className={`${hasImage ? "col-span-5" : "col-span-7"} flex flex-col justify-between py-[2vh]`}>
         <div>
           <div className="mb-[2.5vh] flex items-center gap-[1.5vw]">
             <span
@@ -385,12 +408,12 @@ function WineSlide({
             )}
           </div>
 
-          <h2 className="jp-wrap font-display text-[3.4vw] font-bold leading-[1.15] text-ink">
+          <h2 className={`jp-wrap font-display font-bold leading-[1.15] text-ink ${hasImage ? "text-[2.8vw]" : "text-[3.4vw]"}`}>
             {item.name}
           </h2>
 
           {item.notes && (
-            <p className="jp-wrap mt-[2.5vh] max-w-[46vw] text-[1.4vw] font-medium leading-[1.6] text-ink/90">
+            <p className={`jp-wrap mt-[2.2vh] font-medium leading-[1.6] text-ink/90 ${hasImage ? "max-w-[36vw] text-[1.25vw]" : "max-w-[46vw] text-[1.4vw]"}`}>
               {item.notes}
             </p>
           )}
@@ -410,16 +433,16 @@ function WineSlide({
         </div>
 
         <div className="flex items-baseline gap-[1vw]">
-          <span className="font-display text-[1.8vw] text-muted">{currency}</span>
-          <span className="font-display text-[4.6vw] font-bold leading-none text-accent">
+          <span className="font-display text-[1.6vw] text-muted">{currency}</span>
+          <span className={`font-display font-bold leading-none text-accent ${hasImage ? "text-[3.8vw]" : "text-[4.6vw]"}`}>
             {item.price.toLocaleString("ja-JP")}
           </span>
-          <span className="text-[1.1vw] text-muted">税込 / ボトル</span>
+          <span className="text-[1vw] text-muted">税込 / ボトル</span>
         </div>
       </div>
 
       {/* Right: pairing showcase */}
-      <div className="relative col-span-5 flex flex-col justify-center overflow-hidden rounded-[1.5vw] p-[2.5vw]"
+      <div className={`relative ${hasImage ? "col-span-4" : "col-span-5"} flex flex-col justify-center overflow-hidden rounded-[1.5vw] p-[2vw]`}
         style={{
           background: `radial-gradient(ellipse at 20% 30%, ${(category.accent ?? "#7a2d3a")}55, transparent 65%), radial-gradient(ellipse at 80% 80%, ${(category.accent ?? "#7a2d3a")}30, transparent 65%), #110f0c`,
         }}
@@ -450,12 +473,12 @@ function WineSlide({
                 className="flex items-baseline gap-[1.2vw]"
               >
                 <span
-                  className="font-display text-[1.4vw] font-bold leading-none"
+                  className="font-display text-[1.3vw] font-bold leading-none"
                   style={{ color: category.accent ?? "#e8b14a" }}
                 >
                   0{i + 1}
                 </span>
-                <span className="jp-wrap font-display text-[2.4vw] font-bold leading-[1.2] text-ink">
+                <span className={`jp-wrap font-display font-bold leading-[1.2] text-ink ${hasImage ? "text-[2vw]" : "text-[2.4vw]"}`}>
                   {p}
                 </span>
               </li>
