@@ -50,6 +50,10 @@ export type MenuData = {
     categoryIntroDurationMs: number;
     storyDurationMs?: number;
     storyEveryNSlides?: number;
+    /** Duration of the punchy lead-in slide before each featured/限定 item. */
+    featuredTeaserDurationMs?: number;
+    /** Duration of the featured item slide itself (usually longer than a regular item). */
+    featuredItemDurationMs?: number;
   };
   stories?: Story[];
   categories: MenuCategory[];
@@ -63,7 +67,14 @@ export function getMenu(): MenuData {
 export type Slide =
   | { kind: "intro"; category: MenuCategory }
   | { kind: "item"; category: MenuCategory; item: MenuItem }
-  | { kind: "story"; story: Story };
+  | { kind: "story"; story: Story }
+  | { kind: "featured-teaser"; category: MenuCategory; item: MenuItem };
+
+/** True if any badge contains a limited/featured marker (限定 / 🔥 / 📺 / 🌟 / ⭐). */
+export function isFeatured(item: MenuItem): boolean {
+  if (!item.badges || item.badges.length === 0) return false;
+  return item.badges.some((b) => /限定|🔥|📺|🌟|⭐/.test(b));
+}
 
 export function buildSlides(menu: MenuData): Slide[] {
   // Phase 1: build menu slides (intros + items)
@@ -90,6 +101,15 @@ export function buildSlides(menu: MenuData): Slide[] {
         const item = q.items.shift();
         if (item) base.push({ kind: "item", category: q.cat, item });
       }
+    }
+  }
+
+  // Inject a "featured-teaser" slide right before any item that carries a
+  // featured/limited badge — gives the menu a quick 「演出」 lead-in.
+  for (let i = base.length - 1; i >= 0; i--) {
+    const slide = base[i];
+    if (slide.kind === "item" && isFeatured(slide.item)) {
+      base.splice(i, 0, { kind: "featured-teaser", category: slide.category, item: slide.item });
     }
   }
 

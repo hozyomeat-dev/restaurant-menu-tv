@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import type { MenuData, Slide } from "@/lib/menu";
-import { buildSlides } from "@/lib/menu";
+import { buildSlides, isFeatured } from "@/lib/menu";
 
 type Props = { menu: MenuData };
 
@@ -18,7 +18,11 @@ export default function MenuSlideshow({ menu }: Props) {
       ? menu.display.categoryIntroDurationMs
       : current?.kind === "story"
         ? menu.display.storyDurationMs ?? 10000
-        : menu.display.slideDurationMs;
+        : current?.kind === "featured-teaser"
+          ? menu.display.featuredTeaserDurationMs ?? 4500
+          : current?.kind === "item" && isFeatured(current.item)
+            ? menu.display.featuredItemDurationMs ?? 13000
+            : menu.display.slideDurationMs;
 
   useEffect(() => {
     if (slides.length === 0) return;
@@ -84,7 +88,76 @@ function SlideView({ slide, currency }: { slide: Slide; currency: string }) {
   if (slide.kind === "story") {
     return <StorySlide slide={slide} />;
   }
+  if (slide.kind === "featured-teaser") {
+    return <FeaturedTeaserSlide slide={slide} />;
+  }
   return <ItemSlide slide={slide} currency={currency} />;
+}
+
+function FeaturedTeaserSlide({ slide: { category, item } }: { slide: Extract<Slide, { kind: "featured-teaser" }> }) {
+  const accent = category.accent ?? "#e8b14a";
+  return (
+    <div
+      key={`teaser-${item.id}`}
+      className="relative h-full w-full overflow-hidden rounded-[1vw]"
+      style={{
+        background: `radial-gradient(ellipse at 50% 35%, ${accent}55, transparent 65%), radial-gradient(ellipse at 50% 80%, ${accent}25, transparent 70%), #0b0a08`,
+      }}
+    >
+      {/* Sweeping shine effect */}
+      <div
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{
+          background: `linear-gradient(110deg, transparent 30%, ${accent}60 50%, transparent 70%)`,
+          animation: "teaserShine 2.5s ease-in-out 800ms both",
+        }}
+      />
+
+      <div className="relative z-10 flex h-full w-full flex-col items-center justify-center p-[4vw] text-center">
+        {/* 📺 large emoji at top */}
+        <div className="animate-teaserPop text-[8vw] leading-none">📺</div>
+
+        {/* 「画面限定」huge text */}
+        <h2
+          className="animate-teaserPop jp-wrap font-display text-[14vw] font-black leading-[0.85] text-ink"
+          style={{
+            color: accent,
+            textShadow: `0 0 60px ${accent}cc, 0 0 120px ${accent}66`,
+            letterSpacing: "-0.02em",
+            animationDelay: "200ms",
+          }}
+        >
+          画面限定
+        </h2>
+
+        {/* Subtle MENU label */}
+        <div className="animate-teaserSlideUp mt-[2vh] flex items-center gap-[2vw]">
+          <span
+            className="h-[3px] w-[8vw]"
+            style={{ background: accent, opacity: 0.6 }}
+          />
+          <span
+            className="font-display text-[3.2vw] font-bold uppercase tracking-[0.5em]"
+            style={{ color: accent }}
+          >
+            Menu
+          </span>
+          <span
+            className="h-[3px] w-[8vw]"
+            style={{ background: accent, opacity: 0.6 }}
+          />
+        </div>
+
+        {/* Item name preview */}
+        <p
+          className="animate-teaserSlideUpLate jp-wrap mt-[4vh] font-display text-[4.8vw] font-bold text-ink"
+          style={{ textShadow: "0 4px 24px rgba(0,0,0,0.9)" }}
+        >
+          {item.name}
+        </p>
+      </div>
+    </div>
+  );
 }
 
 function StorySlide({ slide: { story } }: { slide: Extract<Slide, { kind: "story" }> }) {
@@ -246,35 +319,51 @@ function ItemSlide({
     return <WineSlide category={category} item={item} currency={currency} />;
   }
   const hasImage = Boolean(item.image);
+  const featured = isFeatured(item);
+  // Featured items get an upsized layout to play off the teaser's drama.
+  const sizes = featured
+    ? { name: "text-[6.2vw]", nameEn: "text-[1.8vw]", desc: "text-[2.2vw]", price: "text-[8.5vw]", currency: "text-[2.6vw]", priceSuffix: "text-[1.5vw]" }
+    : { name: "text-[4.4vw]", nameEn: "text-[1.5vw]", desc: "text-[1.6vw]", price: "text-[5.5vw]", currency: "text-[2vw]", priceSuffix: "text-[1.2vw]" };
+  const accent = category.accent ?? "#e8b14a";
 
   return (
-    <div className="grid h-full w-full animate-fadeIn grid-cols-12 gap-[3vw]">
+    <div
+      className="grid h-full w-full animate-fadeIn grid-cols-12 gap-[3vw]"
+      style={
+        featured
+          ? {
+              background: `radial-gradient(ellipse at 30% 80%, ${accent}22, transparent 70%), radial-gradient(ellipse at 80% 20%, ${accent}18, transparent 70%)`,
+              borderRadius: "1.2vw",
+            }
+          : undefined
+      }
+    >
       <div
-        className={`relative ${hasImage ? "col-span-7" : "col-span-12"} flex flex-col justify-between py-[2vh]`}
+        className={`relative ${hasImage ? "col-span-7" : "col-span-12"} flex flex-col justify-between py-[2vh] ${featured ? "px-[2vw]" : ""}`}
       >
         <div>
           <div className="mb-[2.5vh] flex items-center gap-[1.5vw]">
             <span
               className="h-[2px] w-[3vw]"
-              style={{ background: category.accent ?? "#e8b14a" }}
+              style={{ background: accent }}
             />
             <span
               className="font-display text-[1.4vw] uppercase tracking-[0.3em]"
-              style={{ color: category.accent ?? "#e8b14a" }}
+              style={{ color: accent }}
             >
               {category.name}
             </span>
           </div>
 
-          <h2 className="jp-wrap font-display text-[4.4vw] font-bold leading-[1.1] text-ink">
+          <h2 className={`jp-wrap font-display ${sizes.name} font-bold leading-[1.1] text-ink`} style={featured ? { textShadow: `0 0 40px ${accent}66` } : undefined}>
             {item.name}
           </h2>
           {item.nameEn && (
-            <p className="mt-[1vh] text-[1.5vw] text-muted">{item.nameEn}</p>
+            <p className={`mt-[1vh] ${sizes.nameEn} text-muted`}>{item.nameEn}</p>
           )}
 
           {item.description && (
-            <p className="jp-wrap mt-[3vh] max-w-[42vw] text-[1.6vw] leading-[1.65] text-ink/90">
+            <p className={`jp-wrap mt-[3vh] max-w-[42vw] ${sizes.desc} leading-[1.6] text-ink/90`}>
               {item.description}
             </p>
           )}
@@ -312,11 +401,14 @@ function ItemSlide({
         </div>
 
         <div className="flex items-baseline gap-[1vw]">
-          <span className="font-display text-[2vw] text-muted">{currency}</span>
-          <span className="font-display text-[5.5vw] font-bold leading-none text-accent">
+          <span className={`font-display ${sizes.currency} text-muted`}>{currency}</span>
+          <span
+            className={`font-display ${sizes.price} font-bold leading-none text-accent`}
+            style={featured ? { textShadow: `0 0 50px ${accent}88, 0 0 100px ${accent}33` } : undefined}
+          >
             {item.price.toLocaleString("ja-JP")}
           </span>
-          <span className="text-[1.2vw] text-muted">税込</span>
+          <span className={`${sizes.priceSuffix} text-muted`}>税込</span>
         </div>
       </div>
 

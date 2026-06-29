@@ -9,7 +9,9 @@
     "showCategoryIntro": false,
     "categoryIntroDurationMs": 4000,
     "storyDurationMs": 14000,
-    "storyEveryNSlides": 6
+    "storyEveryNSlides": 6,
+    "featuredTeaserDurationMs": 4500,
+    "featuredItemDurationMs": 13000
   },
   "stories": [
     {
